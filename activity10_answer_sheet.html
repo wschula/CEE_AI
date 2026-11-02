@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Activity 10 Answer Sheet</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+<style>
+/* Layout: one sticky stage rail on top, one column of numbered work blocks below; the sheet is a lab notebook, not a form. */
+:root {
+  --bg: #fbfaf7; --paper: #ffffff; --ink: #16213a; --ink-2: #4a5570; --line: #dcd9d0; --tint: #eef1f7;
+  --accent: #e8731f; --accent-ink: #ffffff; --blue: #2d7ea8; --ok: #2f8f5b; --warn: #c2452d; --warn-bg: #fbe9e4; --ok-bg: #e4f3ea;
+  --display: "Fraunces", Georgia, serif; --body: "IBM Plex Sans Thai", "Noto Sans Thai", Arial, sans-serif; --mono: "IBM Plex Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11161f; --paper: #1a2130; --ink: #eceef3; --ink-2: #aab3c5; --line: #2f3a4e; --tint: #222b3c;
+  --accent: #f28c3a; --accent-ink: #11161f; --blue: #5aa9d6; --ok: #5ec48a; --warn: #ef7a62; --warn-bg: #3b2520; --ok-bg: #1d3328; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #11161f; --paper: #1a2130; --ink: #eceef3; --ink-2: #aab3c5; --line: #2f3a4e; --tint: #222b3c;
+  --accent: #f28c3a; --accent-ink: #11161f; --blue: #5aa9d6; --ok: #5ec48a; --warn: #ef7a62; --warn-bg: #3b2520; --ok-bg: #1d3328; color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.5; margin: 0; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 920px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 48px; }
+h1 { font-family: var(--display); font-size: clamp(26px, 4vw, 36px); font-weight: 700; margin: 20px 0 4px; letter-spacing: -0.01em; text-wrap: balance; }
+h2 { font-family: var(--display); font-size: 24px; font-weight: 600; margin: 32px 0 6px; text-wrap: balance; }
+h3 { font-size: 15px; font-weight: 600; margin: 22px 0 6px; }
+p { margin: 6px 0; max-width: 68ch; }
+.lede { color: var(--ink-2); max-width: 68ch; }
+.eyebrow { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); font-weight: 600; }
+
+/* top bar */
+.topbar { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin: 10px 0 14px; }
+.chip { font-size: 13px; padding: 3px 10px; border-radius: 999px; background: var(--tint); color: var(--ink-2); }
+.chip strong { color: var(--ink); }
+.status { font-size: 13px; color: var(--ink-2); margin-left: auto; }
+.rail { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding: 8px 0; margin: 0 0 8px; display: flex; gap: 6px; overflow-x: auto; border-bottom: 1px solid var(--line); }
+.rail a { flex: 0 0 auto; text-decoration: none; color: var(--ink-2); font-size: 13px; font-weight: 500; padding: 6px 12px; border-radius: 8px; border: 1px solid transparent; display: inline-flex; gap: 6px; align-items: center; }
+.rail a.active { background: var(--paper); border-color: var(--line); color: var(--ink); }
+.rail a .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--line); }
+.rail a.done .dot { background: var(--ok); }
+.rail a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+section.view { display: none; }
+section.view.active { display: block; }
+
+/* work blocks */
+.block { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin: 14px 0; }
+.block .num { font-family: var(--mono); font-size: 12px; color: var(--accent); font-weight: 500; }
+.block h3 { margin-top: 2px; }
+.hint { font-size: 13px; color: var(--ink-2); max-width: 70ch; }
+textarea, input[type=text], input[type=number], select { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; width: 100%; box-sizing: border-box; }
+textarea { min-height: 84px; resize: vertical; }
+textarea.short { min-height: 56px; }
+input[type=number] { width: 7em; font-variant-numeric: tabular-nums; }
+.row { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: end; }
+.row > label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--ink-2); min-width: 0; flex: 1 1 160px; }
+.row > label.sm { flex: 0 1 140px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+button { font: inherit; font-weight: 500; font-size: 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); padding: 8px 14px; cursor: pointer; }
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+button.quiet { background: transparent; }
+button:disabled { opacity: .5; cursor: default; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.note { font-size: 13px; padding: 8px 12px; border-radius: 6px; background: var(--tint); margin-top: 10px; }
+.note.ok { background: var(--ok-bg); } .note.warn { background: var(--warn-bg); }
+
+/* title cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; margin-top: 10px; }
+.card { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: var(--bg); display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.card .t { font-weight: 500; line-height: 1.35; overflow-wrap: anywhere; }
+.card .meta { font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 4px 10px; }
+.card .idx { font-family: var(--mono); font-size: 11px; color: var(--accent); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; align-self: flex-start; }
+.seg button { border: 0; border-radius: 0; padding: 5px 10px; font-size: 13px; background: transparent; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button.on { background: var(--ink); color: var(--bg); }
+.card.right { border-color: var(--ok); } .card.wrong { border-color: var(--warn); }
+.card .truth { font-size: 12px; font-weight: 600; }
+.card.right .truth { color: var(--ok); } .card.wrong .truth { color: var(--warn); }
+.members { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.members button.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12px; color: var(--ink-2); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.tablewrap { overflow-x: auto; }
+.rules { display: flex; flex-direction: column; gap: 6px; }
+.rules .r { display: flex; gap: 8px; align-items: center; }
+.rules .r span { font-family: var(--mono); font-size: 12px; color: var(--ink-2); width: 2.2em; flex: none; }
+.count { font-family: var(--mono); font-size: 12px; color: var(--ink-2); }
+.count.bad { color: var(--warn); }
+pre.code { font-family: var(--mono); font-size: 12.5px; background: var(--tint); border-radius: 8px; padding: 12px; overflow-x: auto; white-space: pre; margin: 10px 0 0; }
+.verdict { display: flex; flex-wrap: wrap; gap: 8px; }
+.verdict label { display: inline-flex; gap: 6px; align-items: center; border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; cursor: pointer; }
+.verdict label:has(input:checked) { border-color: var(--accent); background: var(--tint); }
+.roles th:first-child, .roles td:first-child { white-space: nowrap; }
+.toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 8px; font-size: 14px; opacity: 0; transition: opacity .2s; pointer-events: none; }
+.toast.show { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
+.dialog { border: 1px solid var(--line); border-radius: 10px; background: var(--paper); padding: 14px 16px; margin-top: 10px; }
+</style>
+
+<div class="wrap">
+  <h1>Activity 10 — Answer Sheet</h1>
+  <p class="lede">Build it. See it. Ask it. One sheet per group. The <strong>recorder</strong> types here while the <strong>driver</strong> runs the notebook. Everything saves in this browser as you type; at the end of each stage, copy the block the notebook asks for.</p>
+  <div class="topbar">
+    <span class="chip" id="chipGroup">Group —</span>
+    <span class="chip" id="chipRole">Roles not set</span>
+    <span class="status" id="saveStatus">Not saved yet</span>
+  </div>
+  <nav class="rail" id="rail">
+    <a href="#setup" data-view="setup"><span class="dot"></span>Setup</a>
+    <a href="#stage-1" data-view="stage-1"><span class="dot"></span>1 · Be the model</a>
+    <a href="#stage-2" data-view="stage-2"><span class="dot"></span>2 · Build</a>
+    <a href="#stage-3" data-view="stage-3"><span class="dot"></span>3 · See</a>
+    <a href="#stage-4" data-view="stage-4"><span class="dot"></span>4 · Ask</a>
+    <a href="#stage-5" data-view="stage-5"><span class="dot"></span>5 · Decide</a>
+    <a href="#export" data-view="export"><span class="dot"></span>Submit</a>
+  </nav>
+
+  <!-- ============ SETUP ============ -->
+  <section class="view" id="view-setup">
+    <h2>Setup</h2>
+    <p class="lede">Fill this in before the briefing ends. The roles rotate automatically: the person typing changes at every stage.</p>
+    <div class="block">
+      <div class="num">S.1</div><h3>Group</h3>
+      <div class="row">
+        <label class="sm">Group number <input type="number" id="groupNo" min="1" max="99" placeholder="7"></label>
+        <label class="sm">Section <input type="text" id="section" placeholder="S2"></label>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <label>Member 1 (name · ID) <input type="text" id="m1" placeholder="Ploy 673xxxxx21"></label>
+        <label>Member 2 <input type="text" id="m2"></label>
+        <label>Member 3 <input type="text" id="m3"></label>
+        <label>Member 4 (optional) <input type="text" id="m4"></label>
+      </div>
+    </div>
+    <div class="block">
+      <div class="num">S.2</div><h3>Who does what</h3>
+      <p class="hint">Driver types in the notebook. Navigator reads the instructions aloud. Recorder fills this sheet. Verifier checks every number before it is written down. With three members the verifier role is shared.</p>
+      <div class="tablewrap"><table class="roles" id="rolesTable"><thead><tr><th>Stage</th><th>Driver</th><th>Navigator</th><th>Recorder</th><th>Verifier</th></tr></thead><tbody></tbody></table></div>
+    </div>
+  </section>
+
+  <!-- ============ STAGE 1 ============ -->
+  <section class="view" id="view-stage-1">
+    <h2>Stage 1 — Be the model <span class="eyebrow">· 10 min · no notebook yet</span></h2>
+    <p class="lede">Twelve real video titles from two Thai YouTube channels: <strong>FAROSE</strong> (long-form history, biography, travel) and <strong>9arm</strong> (tech commentary, gadgets, internet culture). Each card shows four numbers the computer will also see later.</p>
+
+    <div class="block">
+      <div class="num">1.A</div><h3>Guess alone</h3>
+      <p class="hint">Pass the laptop around. Each member picks their name, labels all 12 cards without talking, then hands over. Nobody looks at anyone else's picks.</p>
+      <div class="members" id="memberPick"></div>
+      <div class="cards" id="cardsA"></div>
+    </div>
+
+    <div class="block">
+      <div class="num">1.B</div><h3>Agree on rules</h3>
+      <p class="hint">Now talk. Write at least three yes/no rules the whole group agrees on, in the order you would check them. A rule names one clue and one outcome, like <em>“If the title contains EP → FAROSE”</em> or <em>“If published before noon → 9arm”</em>.</p>
+      <div class="rules" id="rules"></div>
+      <div class="actions"><button type="button" id="addRule">+ Add a rule</button></div>
+    </div>
+
+    <div class="block">
+      <div class="num">1.C</div><h3>Apply the rules and score</h3>
+      <p class="hint">Label every card by following your rules only (not your gut). Then press <strong>Score</strong>: the true channels appear, with each member's score from 1.A and the group's rule-based accuracy. That accuracy goes into the notebook.</p>
+      <div class="cards" id="cardsC"></div>
+      <div class="actions"><button type="button" class="primary" id="scoreBtn">Score</button><button type="button" class="quiet" id="hideBtn" hidden>Hide answers</button></div>
+      <div id="scoreOut"></div>
+    </div>
+
+    <div class="block">
+      <div class="num">1.D</div><h3>Mine the words</h3>
+      <p class="hint">Thai words or phrases you expect to appear <em>more</em> in one channel's titles. At least two per channel, separated by commas. Think about what each channel talks about, not just the 12 cards. In Stage 2, a word that appears in fewer than 5 videos is dropped.</p>
+      <div class="grid2">
+        <label>FAROSE keywords <input type="text" id="kwF" placeholder="ประวัติ, EP, เที่ยว"></label>
+        <label>9arm keywords <input type="text" id="kw9" placeholder="แอป, รีวิว, ข้อมูล"></label>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="num">1.E</div><h3>Describe each channel</h3>
+      <p class="hint">One English sentence per channel, at least 8 words, written by the group. Be visual: content, mood, colours, lighting, objects. In Stage 3 this sentence becomes the prompt that repaints a thumbnail, so “tech videos” gives a boring picture and “fast tech commentary, neon studio lighting, smartphones on a desk” gives a good one.</p>
+      <div class="grid2">
+        <label>FAROSE profile <textarea class="short" id="profF"></textarea><span class="count" id="cntF">0 words</span></label>
+        <label>9arm profile <textarea class="short" id="prof9"></textarea><span class="count" id="cnt9">0 words</span></label>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="num">1.F</div><h3>Hand over to the notebook</h3>
+      <p class="hint">This is the baton. Copy the block and paste it over the top part of notebook cell <strong>2.1</strong>, replacing the empty values.</p>
+      <div class="actions"><button type="button" class="primary" id="copyS1">Copy Stage 1 block for cell 2.1</button></div>
+      <pre class="code" id="codeS1"></pre>
+    </div>
+  </section>
+
+  <!-- ============ STAGE 2 ============ -->
+  <section class="view" id="view-stage-2">
+    <h2>Stage 2 — Let the machine find the rules <span class="eyebrow">· 30 min · notebook</span></h2>
+    <p class="lede">The verifier reads every number off the notebook; the recorder types it here. Answer in your own words, not the LLM's.</p>
+    <div class="block">
+      <div class="num">2.0</div><h3>Numbers from the notebook</h3>
+      <div class="row">
+        <label class="sm">Train accuracy % <input type="number" step="0.01" id="trainAcc"></label>
+        <label class="sm">Test (year split) % <input type="number" step="0.01" id="testAcc"></label>
+        <label class="sm">Test (random split) % <input type="number" step="0.01" id="randAcc"></label>
+        <label>Top feature (exact name) <input type="text" id="topFeat" placeholder="has_EP"></label>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <label>Word features the notebook kept <input type="text" id="wordsKept"></label>
+        <label>The video that fooled the tree (title) <input type="text" id="fooledTitle"></label>
+      </div>
+    </div>
+    <div class="block"><div class="num">Q2.1</div><h3>Features</h3><p class="hint">A video was published at 18:00 and its title is 45 characters long. Which channel? Which of the five numeric features would you trust <em>least</em> in 2027, and why?</p><textarea id="q21"></textarea></div>
+    <div class="block"><div class="num">Q2.2</div><h3>Your keywords</h3><p class="hint">Which keyword separated the channels most cleanly? Which one surprised you? Why would you not keep a word that appears in only one or two videos?</p><textarea id="q22"></textarea></div>
+    <div class="block"><div class="num">Q2.3</div><h3>Three numbers, one trap</h3><p class="hint">The random split usually scores higher. Why is that number a lie about the future? Is the gap between train and test a warning sign, and which of your word features might cause it? Did the machine beat your group's hand-made rules, and did it pick the same top clue?</p><textarea id="q23"></textarea></div>
+    <div class="block"><div class="num">Q2.4</div><h3>Inside the tree</h3><p class="hint">Translate the first two splits of your tree into plain sentences. Then: why did the rules fail on the video that fooled the tree? Could a human have got it right from the title alone, or would you need to see the video?</p><textarea id="q24"></textarea>
+      <div class="note">✋ Call a TA before Stage 3. They will ask one random member to explain the year split vs the random split.</div></div>
+  </section>
+
+  <!-- ============ STAGE 3 ============ -->
+  <section class="view" id="view-stage-3">
+    <h2>Stage 3 — See like the machine <span class="eyebrow">· 45 min · notebook + GPU</span></h2>
+    <p class="lede">Start the model download cell first, then work on the pixel and edge TODOs while it runs.</p>
+    <div class="block">
+      <div class="num">3.0</div><h3>Settings you chose</h3>
+      <div class="row">
+        <label class="sm">Crop rows (r0:r1) <input type="text" id="cropR" placeholder="120:400"></label>
+        <label class="sm">Crop cols (c0:c1) <input type="text" id="cropC" placeholder="100:400"></label>
+        <label class="sm">Canny LOW <input type="number" id="cannyLow"></label>
+        <label class="sm">Canny HIGH <input type="number" id="cannyHigh"></label>
+        <label class="sm">% edge pixels <input type="number" step="0.1" id="edgePct"></label>
+      </div>
+    </div>
+    <div class="block"><div class="num">Q3.1</div><h3>What the tree never saw</h3><p class="hint">Looking at the three thumbnails, could <em>you</em> tell which channel the fooled video belongs to? Name two visual features (colour, face, text, objects…) a thumbnail has that the tree never saw.</p><textarea id="q31"></textarea></div>
+    <div class="block"><div class="num">Q3.2</div><h3>Your words changed the picture</h3><p class="hint">Which generated image looks more like the true channel? Which single word in your profile sentence changed the picture the most? Change one word, regenerate, and describe what changed.</p><textarea id="q32"></textarea></div>
+    <div class="block"><div class="num">Q3.3</div><h3>Same role, different tool</h3><p class="hint">In Stage 2 you chose the features and the tree chose the splits. Here you chose the edges and the words and the model painted. What is the same about your role in both stages?</p><textarea id="q33"></textarea></div>
+  </section>
+
+  <!-- ============ STAGE 4 ============ -->
+  <section class="view" id="view-stage-4">
+    <h2>Stage 4 — Ask an LLM about your model <span class="eyebrow">· 35 min · notebook + any LLM</span></h2>
+    <p class="lede">The notebook gate asks the driver to type the test accuracy and top feature <em>from this sheet</em> (block 2.0). The prompt log itself lives in the notebook; the reflection lives here.</p>
+    <div class="block">
+      <div class="num">4.0</div><h3>Which LLM</h3>
+      <div class="row"><label>LLM(s) used (name, free or paid) <input type="text" id="llmUsed" placeholder="Gemini (free web), ChatGPT"></label></div>
+    </div>
+    <div class="block"><div class="num">Q4.1</div><h3>Explaining your tree</h3><p class="hint">Which single change to the prompt improved the answer most? Did the LLM say anything about your tree that was wrong (a threshold, a feature name, what <code>class_weight='balanced'</code> does)? How did you know it was wrong?</p><textarea id="q41"></textarea></div>
+    <div class="block"><div class="num">Q4.2</div><h3>Trust, but verify</h3><p class="hint">Did the LLM sound equally confident when it was right and when it was wrong? In Stage 2 you saw a feature can look useful and still be unreliable. How is trusting a fluent answer the same mistake? Where would you always verify, and where is it reasonable to trust?</p><textarea id="q42"></textarea></div>
+  </section>
+
+  <!-- ============ STAGE 5 ============ -->
+  <section class="view" id="view-stage-5">
+    <h2>Stage 5 — Deploy or not? <span class="eyebrow">· 20 min · then checkout</span></h2>
+    <div class="block">
+      <div class="num">5.0</div><h3>Scenario</h3>
+      <p>A Thai media company wants to deploy a model like yours to automatically label new videos and choose which ads to show, with no human review. Their model was trained on 1,000 videos from 2020–2022 and scores <strong>82 % on the test set</strong>. They want to deploy it immediately.</p>
+      <p class="hint">Ask an LLM with a chain-of-thought prompt: <em>“Think step by step. First identify the risks of deploying this model, then the ethical considerations, then the steps needed before it is safe to deploy. At least 3 points in each.”</em></p>
+      <label>Your prompt <textarea class="short" id="cotPrompt"></textarea></label>
+    </div>
+    <div class="block">
+      <div class="num">5.1</div><h3>What the LLM said, mapped to <em>your</em> model</h3>
+      <p class="hint">Summarise each category in your own words, then mark which points actually happened to your model today (use your numbers from 2.0: the train/test gap, the random-split number, the fooled video).</p>
+      <div class="grid2">
+        <label>Risks <textarea id="risks"></textarea></label>
+        <label>Ethical considerations <textarea id="ethics"></textarea></label>
+        <label>Steps before deployment <textarea id="steps"></textarea></label>
+        <label>Which of these applied to your model today? Be specific. <textarea id="applied"></textarea></label>
+      </div>
+    </div>
+    <div class="block">
+      <div class="num">5.2</div><h3>Group verdict</h3>
+      <div class="verdict">
+        <label><input type="radio" name="verdict" value="deploy"> Deploy</label>
+        <label><input type="radio" name="verdict" value="conditions"> Deploy with conditions</label>
+        <label><input type="radio" name="verdict" value="no"> Do not deploy</label>
+      </div>
+      <label style="display:block;margin-top:10px">Five lines, one piece of evidence from today that decides it <textarea id="verdictText"></textarea><span class="count" id="cntV">0 lines</span></label>
+    </div>
+    <div class="block">
+      <div class="num">5.3</div><h3>Checkout</h3>
+      <p class="hint">Run the last Stage 4 cell in the notebook; it prints a 6-character checkout code. Type it here, then call a TA. The TA picks one member at random to explain any stage.</p>
+      <div class="row"><label class="sm">Checkout code <input type="text" id="checkout" maxlength="6" placeholder="5F9136" style="font-family:var(--mono);text-transform:uppercase"></label></div>
+      <div class="note">Before you call: can <em>every</em> member answer — Do I understand what it did and why? Can I spot where it might be wrong? Could I explain this without the LLM?</div>
+    </div>
+  </section>
+
+  <!-- ============ EXPORT ============ -->
+  <section class="view" id="view-export">
+    <h2>Submit</h2>
+    <p class="lede">Your answers are only in this browser. Submit them through the notebook so they are stamped with your checkout code.</p>
+    <div class="block">
+      <div class="num">X.1</div><h3>Check completeness</h3>
+      <div id="checklist"></div>
+    </div>
+    <div class="block">
+      <div class="num">X.2</div><h3>Paste into the notebook</h3>
+      <p class="hint">Copy the block and paste it into notebook cell <strong>4.5 — Answer sheet</strong>, then run that cell and the checkout cell after it.</p>
+      <div class="actions"><button type="button" class="primary" id="copyAll">Copy answer sheet for cell 4.5</button><button type="button" id="saveFile">Save as file (backup)</button></div>
+      <pre class="code" id="codeAll"></pre>
+    </div>
+    <div class="block">
+      <div class="num">X.3</div><h3>Start over</h3>
+      <p class="hint">Clears everything on this sheet in this browser. Only for a new group on the same laptop.</p>
+      <div class="actions"><button type="button" id="resetBtn">Clear this sheet</button></div>
+      <div class="dialog" id="resetDialog" hidden>Really clear every answer? <div class="actions"><button type="button" class="primary" id="resetYes">Yes, clear</button><button type="button" id="resetNo">Keep</button></div></div>
+    </div>
+  </section>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  'use strict';
+  const CARDS = [{"title": "เที่ยวทิพย์ EP12 อาหารฝรั่งทำโดยคนจีน เรียกว่าอะไร?", "hour": 18, "len": 51, "min": 24, "day": "Mon"}, {"title": "ทำไม EPIC ต้องฟ้อง APPLE ?", "hour": 12, "len": 26, "min": 9, "day": "Tue"}, {"title": "PYMK EP7 สงครามกรุงทรอยของโฮเมอร์ กวีเอก", "hour": 20, "len": 40, "min": 60, "day": "Wed"}, {"title": "ช่างเชื่อม EP20 เธอเกิดจากน้ำลายของเทพ ไม่เหนียวหรอ?", "hour": 18, "len": 52, "min": 29, "day": "Mon"}, {"title": "Vlog #45 : ทำไมใช้ mac?", "hour": 11, "len": 23, "min": 8, "day": "Wed"}, {"title": "ฟังยากมาก สำเนียงออสซี่ — ฟังให้ [Chris Hemsworth] Farose FungHai", "hour": 19, "len": 65, "min": 2, "day": "Wed"}, {"title": "ChatGPT คือ AI ที่โลกยังไม่พร้อมจะรับมือ", "hour": 9, "len": 40, "min": 21, "day": "Wed"}, {"title": "หนทางสู่การไม่ต้องใช้ Password อยู่ไม่ไกล", "hour": 17, "len": 41, "min": 8, "day": "Fri"}, {"title": "บ้ า น ข อ ง เ ร า", "hour": 9, "len": 18, "min": 45, "day": "Sat"}, {"title": "Vlog #10 : บุก Cisco HQ (Silicon Valley Series)", "hour": 9, "len": 47, "min": 11, "day": "Sun"}, {"title": "ไกลบ้าน SP ด้วยรักและคิดถึงตลอดไป", "hour": 21, "len": 33, "min": 10, "day": "Tue"}, {"title": "ไกลบ้าน EP60 ฮาวายในกูเกิ้ลไม่เป็นแบบนี้!", "hour": 18, "len": 41, "min": 27, "day": "Thu"}];
+  const KEY = (() => { try { return atob('TVVNTVVNVVVVVU1N').split('').map(c => String.fromCharCode(c.charCodeAt(0) - 7)).join(''); } catch (e) { return ''; } })();
+  const LABEL = { F: 'FAROSE', N: '9arm' };
+  const STAGES = ['Stage 1', 'Stage 2', 'Stage 3', 'Stage 4', 'Stage 5'];
+  const STORE = 'activity10-sheet-v1';
+  const TEXT_FIELDS = ['groupNo', 'section', 'm1', 'm2', 'm3', 'm4', 'kwF', 'kw9', 'profF', 'prof9', 'trainAcc', 'testAcc', 'randAcc', 'topFeat', 'wordsKept', 'fooledTitle', 'q21', 'q22', 'q23', 'q24', 'cropR', 'cropC', 'cannyLow', 'cannyHigh', 'edgePct', 'q31', 'q32', 'q33', 'llmUsed', 'q41', 'q42', 'cotPrompt', 'risks', 'ethics', 'steps', 'applied', 'verdictText', 'checkout'];
+
+  const $ = id => document.getElementById(id);
+  let S = { fields: {}, guesses: {}, group: {}, rules: ['', '', ''], revealed: false, verdict: '', currentMember: 0 };
+  try { const raw = localStorage.getItem(STORE); if (raw) S = Object.assign(S, JSON.parse(raw)); } catch (e) {}
+  let saveTimer = null;
+  function save() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      try { localStorage.setItem(STORE, JSON.stringify(S)); $('saveStatus').textContent = 'Saved in this browser · ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); }
+      catch (e) { $('saveStatus').textContent = 'Could not save in this browser — copy your answers before closing'; }
+      refreshMeta();
+    }, 250);
+  }
+  function toast(msg) { const t = $('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 1800); }
+  function copyText(text, okMsg) {
+    const done = () => toast(okMsg || 'Copied');
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, () => fallback());
+    else fallback();
+    function fallback() { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e) { toast('Select the text and copy it manually'); } ta.remove(); }
+  }
+  const members = () => ['m1', 'm2', 'm3', 'm4'].map(k => (S.fields[k] || '').trim()).filter(Boolean);
+  const pyStr = s => "'" + String(s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, '\\n') + "'";
+  const pyList = arr => '[' + arr.map(pyStr).join(', ') + ']';
+  const splitKw = s => (s || '').split(/[,，、\n]/).map(x => x.trim()).filter(Boolean);
+  const words = s => (s || '').trim().split(/\s+/).filter(Boolean).length;
+
+  // ---- fields
+  TEXT_FIELDS.forEach(id => {
+    const el = $(id); if (!el) return;
+    if (S.fields[id] !== undefined) el.value = S.fields[id];
+    el.addEventListener('input', () => { S.fields[id] = el.value; onFieldChange(id); save(); });
+  });
+  document.querySelectorAll('input[name=verdict]').forEach(r => { r.checked = S.verdict === r.value; r.addEventListener('change', () => { S.verdict = r.value; save(); }); });
+  function onFieldChange(id) {
+    if (['m1', 'm2', 'm3', 'm4', 'groupNo'].includes(id)) { renderRoles(); renderMembers(); }
+    if (id === 'profF') $('cntF').textContent = words(S.fields.profF) + ' words';
+    if (id === 'prof9') $('cnt9').textContent = words(S.fields.prof9) + ' words';
+    if (id === 'verdictText') $('cntV').textContent = (S.fields.verdictText || '').split('\n').filter(x => x.trim()).length + ' lines';
+    $('cntF').classList.toggle('bad', words(S.fields.profF) < 8); $('cnt9').classList.toggle('bad', words(S.fields.prof9) < 8);
+  }
+
+  // ---- roles
+  const ROLES = ['Driver', 'Navigator', 'Recorder', 'Verifier'];
+  function rolesFor(stageIdx) {
+    const m = members(); if (m.length < 2) return null;
+    const out = {}; ROLES.forEach((r, i) => { out[r] = m.length === 3 && i === 3 ? 'everyone' : m[(stageIdx + i) % m.length]; });
+    if (m.length === 2) { out.Recorder = m[(stageIdx + 1) % 2]; out.Verifier = m[stageIdx % 2]; }
+    return out;
+  }
+  function renderRoles() {
+    const tb = $('rolesTable').querySelector('tbody'); tb.innerHTML = '';
+    STAGES.forEach((s, i) => {
+      const r = rolesFor(i); const tr = document.createElement('tr');
+      tr.innerHTML = '<td>' + s + '</td>' + ROLES.map(k => '<td>' + (r ? r[k] : '—') + '</td>').join('');
+      tb.appendChild(tr);
+    });
+  }
+
+  // ---- stage 1 cards
+  function cardEl(i, c, selected, onPick, reveal) {
+    const d = document.createElement('div'); d.className = 'card';
+    d.innerHTML = '<span class="idx">#' + (i + 1) + '</span><div class="t"></div><div class="meta"><span>' + String(c.hour).padStart(2, '0') + ':00</span><span>' + c.len + ' chars</span><span>' + c.min + ' min</span><span>' + c.day + '</span></div>';
+    d.querySelector('.t').textContent = c.title;
+    const seg = document.createElement('div'); seg.className = 'seg';
+    ['F', 'N'].forEach(v => { const b = document.createElement('button'); b.type = 'button'; b.textContent = LABEL[v]; b.className = selected === v ? 'on' : ''; b.addEventListener('click', () => onPick(v)); seg.appendChild(b); });
+    d.appendChild(seg);
+    if (reveal && KEY.length === 12) {
+      const truth = KEY[i]; const t = document.createElement('div'); t.className = 'truth';
+      if (selected) { d.classList.add(selected === truth ? 'right' : 'wrong'); t.textContent = (selected === truth ? '✓ ' : '✗ ') + 'It is ' + LABEL[truth]; }
+      else t.textContent = 'It is ' + LABEL[truth];
+      d.appendChild(t);
+    }
+    return d;
+  }
+  function renderMembers() {
+    const box = $('memberPick'); box.innerHTML = ''; const m = members();
+    if (!m.length) { box.innerHTML = '<span class="hint">Add member names in Setup first.</span>'; renderCardsA(); return; }
+    if (S.currentMember >= m.length) S.currentMember = 0;
+    m.forEach((name, i) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = name.split(' ')[0] || name; b.className = i === S.currentMember ? 'on' : ''; b.addEventListener('click', () => { S.currentMember = i; save(); renderMembers(); }); box.appendChild(b); });
+    renderCardsA();
+  }
+  function renderCardsA() {
+    const box = $('cardsA'); box.innerHTML = ''; const m = members(); if (!m.length) return;
+    const who = String(S.currentMember); S.guesses[who] = S.guesses[who] || {};
+    CARDS.forEach((c, i) => box.appendChild(cardEl(i, c, S.guesses[who][i], v => { S.guesses[who][i] = v; save(); renderCardsA(); }, S.revealed)));
+  }
+  function renderCardsC() {
+    const box = $('cardsC'); box.innerHTML = '';
+    CARDS.forEach((c, i) => box.appendChild(cardEl(i, c, S.group[i], v => { S.group[i] = v; save(); renderCardsC(); }, S.revealed)));
+    $('hideBtn').hidden = !S.revealed; $('scoreBtn').textContent = S.revealed ? 'Re-score' : 'Score';
+    renderScore();
+  }
+  function accuracy(map) { let n = 0, ok = 0; CARDS.forEach((c, i) => { if (map && map[i]) { n++; if (map[i] === KEY[i]) ok++; } }); return { n, ok, pct: n ? Math.round(100 * ok / n) : 0 }; }
+  function groupAccuracy() { return accuracy(S.group); }
+  function renderScore() {
+    const out = $('scoreOut'); if (!S.revealed) { out.innerHTML = ''; return; }
+    const g = groupAccuracy(); const m = members();
+    let html = '<div class="tablewrap" style="margin-top:12px"><table><thead><tr><th>Who</th><th>Labelled</th><th>Correct</th><th>Accuracy</th></tr></thead><tbody>';
+    m.forEach((name, i) => { const a = accuracy(S.guesses[String(i)]); html += '<tr><td>' + name.replace(/</g, '&lt;') + ' (alone)</td><td class="num">' + a.n + '/12</td><td class="num">' + a.ok + '</td><td class="num">' + a.pct + ' %</td></tr>'; });
+    html += '<tr><td><strong>Group rules</strong></td><td class="num">' + g.n + '/12</td><td class="num">' + g.ok + '</td><td class="num"><strong>' + g.pct + ' %</strong></td></tr></tbody></table></div>';
+    html += '<div class="note ' + (g.n === 12 ? 'ok' : 'warn') + '">' + (g.n === 12 ? 'Human accuracy = <strong>' + g.pct + ' %</strong>. This number goes into the notebook as <code>human_accuracy</code>.' : 'Label all 12 cards with your rules before taking the number.') + ' Which cards did your rules get wrong, and which rule was responsible?</div>';
+    out.innerHTML = html;
+  }
+  $('scoreBtn').addEventListener('click', () => { if (KEY.length !== 12) { toast('Answer key unavailable'); return; } S.revealed = true; save(); renderCardsA(); renderCardsC(); });
+  $('hideBtn').addEventListener('click', () => { S.revealed = false; save(); renderCardsA(); renderCardsC(); });
+
+  // ---- rules
+  function renderRules() {
+    const box = $('rules'); box.innerHTML = '';
+    S.rules.forEach((r, i) => {
+      const row = document.createElement('div'); row.className = 'r';
+      const n = document.createElement('span'); n.textContent = 'R' + (i + 1);
+      const inp = document.createElement('input'); inp.type = 'text'; inp.id = 'rule' + i; inp.value = r; inp.placeholder = i === 0 ? 'If the title contains EP → FAROSE' : 'If … → …';
+      inp.addEventListener('input', () => { S.rules[i] = inp.value; save(); });
+      row.appendChild(n); row.appendChild(inp);
+      if (i >= 3) { const x = document.createElement('button'); x.type = 'button'; x.className = 'quiet'; x.textContent = '×'; x.title = 'Remove rule'; x.addEventListener('click', () => { S.rules.splice(i, 1); save(); renderRules(); }); row.appendChild(x); }
+      box.appendChild(row);
+    });
+  }
+  $('addRule').addEventListener('click', () => { if (S.rules.length >= 8) return; S.rules.push(''); save(); renderRules(); });
+
+  // ---- code generation
+  function stage1Code() {
+    const g = groupAccuracy();
+    return [
+      '# ---- From the Stage 1 answer sheet (pasted from the web sheet) ----',
+      'human_accuracy = ' + (S.revealed && g.n === 12 ? g.pct : 0),
+      '',
+      'human_rules = ' + pyList(S.rules.map(r => r.trim()).filter(Boolean)),
+      '',
+      'keywords_farose = ' + pyList(splitKw(S.fields.kwF)),
+      'keywords_9arm   = ' + pyList(splitKw(S.fields.kw9)),
+      '',
+      'channel_profile = {',
+      "    'farose': " + pyStr((S.fields.profF || '').trim()) + ',',
+      "    '9arm':   " + pyStr((S.fields.prof9 || '').trim()) + ',',
+      '}',
+    ].join('\n');
+  }
+  function sheetCode() {
+    const f = S.fields; const g = groupAccuracy();
+    const d = {
+      group: Number(f.groupNo) || 0, section: f.section || '', members: members(),
+      stage1: { human_accuracy: S.revealed && g.n === 12 ? g.pct : null, rules: S.rules.filter(r => r.trim()), keywords_farose: splitKw(f.kwF), keywords_9arm: splitKw(f.kw9), profile_farose: f.profF || '', profile_9arm: f.prof9 || '',
+                member_scores: members().map((m, i) => ({ member: m, correct: accuracy(S.guesses[String(i)]).ok })) },
+      stage2: { train_acc: num(f.trainAcc), test_acc: num(f.testAcc), random_test_acc: num(f.randAcc), top_feature: f.topFeat || '', word_features: f.wordsKept || '', fooled_title: f.fooledTitle || '', Q2_1: f.q21 || '', Q2_2: f.q22 || '', Q2_3: f.q23 || '', Q2_4: f.q24 || '' },
+      stage3: { crop_rows: f.cropR || '', crop_cols: f.cropC || '', canny_low: num(f.cannyLow), canny_high: num(f.cannyHigh), edge_pct: num(f.edgePct), Q3_1: f.q31 || '', Q3_2: f.q32 || '', Q3_3: f.q33 || '' },
+      stage4: { llm_used: f.llmUsed || '', Q4_1: f.q41 || '', Q4_2: f.q42 || '' },
+      stage5: { cot_prompt: f.cotPrompt || '', risks: f.risks || '', ethics: f.ethics || '', steps: f.steps || '', applied_to_our_model: f.applied || '', verdict: S.verdict || '', verdict_text: f.verdictText || '', checkout_code: (f.checkout || '').toUpperCase() },
+    };
+    return '# ---- Paste into notebook cell 4.5 (Answer sheet) ----\nSHEET = ' + py(d, 0);
+    function num(v) { const n = parseFloat(v); return isNaN(n) ? null : n; }
+    function py(v, ind) {
+      const pad = '  '.repeat(ind + 1), end = '  '.repeat(ind);
+      if (v === null || v === undefined) return 'None';
+      if (typeof v === 'boolean') return v ? 'True' : 'False';
+      if (typeof v === 'number') return String(v);
+      if (typeof v === 'string') return JSON.stringify(v);
+      if (Array.isArray(v)) return v.length ? '[\n' + v.map(x => pad + py(x, ind + 1)).join(',\n') + '\n' + end + ']' : '[]';
+      return '{\n' + Object.keys(v).map(k => pad + JSON.stringify(k) + ': ' + py(v[k], ind + 1)).join(',\n') + '\n' + end + '}';
+    }
+  }
+  $('copyS1').addEventListener('click', () => { const c = stage1Code(); $('codeS1').textContent = c; copyText(c, 'Stage 1 block copied — paste into cell 2.1'); });
+  $('copyAll').addEventListener('click', () => { const c = sheetCode(); $('codeAll').textContent = c; copyText(c, 'Answer sheet copied — paste into cell 4.5'); });
+  $('saveFile').addEventListener('click', async () => {
+    const text = sheetCode(); const name = 'activity10_group' + (S.fields.groupNo || 'X') + '_sheet.py';
+    try { const dl = window.claude && window.claude.use ? await window.claude.use('downloads') : null; if (dl) { await dl.save({ filename: name, data: text }); toast('Saved'); return; } } catch (e) {}
+    if (!(window.claude && window.claude.use)) {
+      try { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([text], { type: 'text/plain' })); a.download = name; document.body.appendChild(a); a.click(); a.remove(); toast('Downloading ' + name); return; } catch (e) {}
+    }
+    copyText(text, 'Download not available here — the sheet was copied instead; paste it into a text file');
+  });
+
+  // ---- completeness
+  function checks() {
+    const f = S.fields; const g = groupAccuracy();
+    return [
+      ['Setup: group number and at least 2 members', !!(Number(f.groupNo) > 0 && members().length >= 2)],
+      ['1.A every member labelled all 12 cards', members().length > 0 && members().every((m, i) => accuracy(S.guesses[String(i)]).n === 12)],
+      ['1.B at least 3 rules', S.rules.filter(r => r.trim()).length >= 3],
+      ['1.C scored with all 12 cards labelled', S.revealed && g.n === 12],
+      ['1.D at least 2 keywords per channel', splitKw(f.kwF).length >= 2 && splitKw(f.kw9).length >= 2],
+      ['1.E both profiles at least 8 words', words(f.profF) >= 8 && words(f.prof9) >= 8],
+      ['2.0 train, test, random accuracy and top feature', !!(f.trainAcc && f.testAcc && f.randAcc && (f.topFeat || '').trim())],
+      ['Q2.1–Q2.4 answered', ['q21', 'q22', 'q23', 'q24'].every(k => words(f[k]) >= 10)],
+      ['3.0 Canny thresholds', !!(f.cannyLow && f.cannyHigh)],
+      ['Q3.1–Q3.3 answered', ['q31', 'q32', 'q33'].every(k => words(f[k]) >= 10)],
+      ['Q4.1–Q4.2 answered', ['q41', 'q42'].every(k => words(f[k]) >= 10)],
+      ['5.1 risks, ethics, steps, applied', ['risks', 'ethics', 'steps', 'applied'].every(k => words(f[k]) >= 5)],
+      ['5.2 verdict chosen and written', !!S.verdict && words(f.verdictText) >= 15],
+      ['5.3 checkout code (6 characters)', /^[0-9A-F]{6}$/i.test((f.checkout || '').trim())],
+    ];
+  }
+  const STAGE_CHECKS = { setup: [0], 'stage-1': [1, 2, 3, 4, 5], 'stage-2': [6, 7], 'stage-3': [8, 9], 'stage-4': [10], 'stage-5': [11, 12, 13], export: [] };
+  function renderChecklist() {
+    const c = checks(); const box = $('checklist');
+    box.innerHTML = '<div class="tablewrap"><table><tbody>' + c.map(([label, ok]) => '<tr><td style="width:2em">' + (ok ? '<span style="color:var(--ok)">✓</span>' : '<span style="color:var(--warn)">○</span>') + '</td><td>' + label + '</td></tr>').join('') + '</tbody></table></div>';
+    const n = c.filter(x => x[1]).length; box.insertAdjacentHTML('beforeend', '<div class="note ' + (n === c.length ? 'ok' : '') + '">' + n + ' of ' + c.length + ' complete.</div>');
+  }
+  function refreshMeta() {
+    const c = checks();
+    document.querySelectorAll('#rail a').forEach(a => { const idx = STAGE_CHECKS[a.dataset.view] || []; a.classList.toggle('done', idx.length > 0 && idx.every(i => c[i][1])); });
+    $('chipGroup').textContent = 'Group ' + (S.fields.groupNo || '—') + (S.fields.section ? ' · ' + S.fields.section : '');
+    const v = current(); const si = ['stage-1', 'stage-2', 'stage-3', 'stage-4', 'stage-5'].indexOf(v); const r = si >= 0 ? rolesFor(si) : null;
+    $('chipRole').textContent = r ? 'Driver: ' + r.Driver.split(' ')[0] + ' · Recorder: ' + r.Recorder.split(' ')[0] : (members().length >= 2 ? 'Roles set' : 'Roles not set');
+    if (v === 'export') renderChecklist();
+  }
+
+  // ---- routing
+  const VIEWS = ['setup', 'stage-1', 'stage-2', 'stage-3', 'stage-4', 'stage-5', 'export'];
+  function current() { const h = (location.hash || '').replace('#', ''); return VIEWS.includes(h) ? h : 'setup'; }
+  function route() {
+    const v = current();
+    document.querySelectorAll('section.view').forEach(s => s.classList.toggle('active', s.id === 'view-' + v));
+    document.querySelectorAll('#rail a').forEach(a => a.classList.toggle('active', a.dataset.view === v));
+    refreshMeta(); window.scrollTo({ top: 0 });
+  }
+  window.addEventListener('hashchange', route);
+
+  // ---- reset
+  $('resetBtn').addEventListener('click', () => { $('resetDialog').hidden = false; });
+  $('resetNo').addEventListener('click', () => { $('resetDialog').hidden = true; });
+  $('resetYes').addEventListener('click', () => { try { localStorage.removeItem(STORE); } catch (e) {} location.hash = '#setup'; location.reload(); });
+
+  // ---- boot
+  renderRoles(); renderMembers(); renderRules(); renderCardsC();
+  ['profF', 'prof9', 'verdictText'].forEach(onFieldChange);
+  $('codeS1').textContent = '# press the button to generate the block'; $('codeAll').textContent = '# press the button to generate the block';
+  route();
+  if (S.fields.groupNo) $('saveStatus').textContent = 'Restored from this browser';
+})();
+</script>
+
+</body>
+</html>
