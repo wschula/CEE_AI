@@ -1,0 +1,911 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Activity 11 Answer Sheet</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=IBM+Plex+Sans+Thai:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+</head>
+<body>
+<style>
+/* Layout: the sheet is the single guide. Each stage = "do here" blocks, one blue "go to Colab" block, then "back here" blocks. Print = lab report. */
+:root {
+  --bg: #fbfaf7; --paper: #ffffff; --ink: #16213a; --ink-2: #4a5570; --line: #dcd9d0; --tint: #eef1f7;
+  --accent: #e8731f; --accent-ink: #ffffff; --blue: #2d7ea8; --blue-bg: #e6f1f8; --ok: #2f8f5b; --warn: #c2452d; --warn-bg: #fbe9e4; --ok-bg: #e4f3ea; --train-f: #fdeedd; --train-9: #e3eef5;
+  --display: "Fraunces", Georgia, serif; --body: "IBM Plex Sans Thai", "Noto Sans Thai", Arial, sans-serif; --mono: "IBM Plex Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11161f; --paper: #1a2130; --ink: #eceef3; --ink-2: #aab3c5; --line: #2f3a4e; --tint: #222b3c;
+  --accent: #f28c3a; --accent-ink: #11161f; --blue: #5aa9d6; --blue-bg: #1b2d3c; --ok: #5ec48a; --warn: #ef7a62; --warn-bg: #3b2520; --ok-bg: #1d3328; --train-f: #3a2a1c; --train-9: #1c2a38; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #11161f; --paper: #1a2130; --ink: #eceef3; --ink-2: #aab3c5; --line: #2f3a4e; --tint: #222b3c;
+  --accent: #f28c3a; --accent-ink: #11161f; --blue: #5aa9d6; --blue-bg: #1b2d3c; --ok: #5ec48a; --warn: #ef7a62; --warn-bg: #3b2520; --ok-bg: #1d3328; --train-f: #3a2a1c; --train-9: #1c2a38; color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 15px; line-height: 1.6; margin: 0; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 920px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 48px; }
+h1 { font-family: var(--display); font-size: clamp(26px, 4vw, 36px); font-weight: 700; margin: 20px 0 4px; letter-spacing: -0.01em; text-wrap: balance; }
+h2 { font-family: var(--display); font-size: 24px; font-weight: 600; margin: 28px 0 6px; text-wrap: balance; }
+h3 { font-size: 15px; font-weight: 600; margin: 22px 0 6px; }
+p { margin: 6px 0; }
+.lede { color: var(--ink-2); }
+.eyebrow { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-2); font-weight: 600; }
+code { font-family: var(--mono); font-size: 0.92em; background: var(--tint); padding: 1px 5px; border-radius: 4px; }
+
+.topbar { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; margin: 10px 0 14px; }
+.chip { font-size: 13px; padding: 3px 10px; border-radius: 999px; background: var(--tint); color: var(--ink-2); }
+.status { font-size: 13px; color: var(--ink-2); margin-left: auto; }
+.rail { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding: 8px 0; margin: 0 0 8px; display: flex; flex-wrap: wrap; gap: 6px; align-items: stretch; border-bottom: 1px solid var(--line); }
+.rail a { flex: 0 0 auto; text-decoration: none; color: var(--ink-2); font-size: 12px; font-weight: 500; padding: 5px 7px; border-radius: 7px; border: 1px solid transparent; display: inline-flex; gap: 5px; align-items: center; white-space: nowrap; }
+.rail a.active { background: var(--paper); border-color: var(--line); color: var(--ink); box-shadow: 0 1px 2px rgba(0,0,0,.08); }
+.rail a .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--line); }
+.rail a.done .dot { background: var(--ok); }
+.rail .group { display: flex; flex-wrap: wrap; gap: 2px; align-items: center; padding: 3px 4px 3px 3px; border-radius: 9px; }
+.rail .group.p1 { background: var(--train-f); }
+.rail .group.p2 { background: var(--train-9); }
+.rail .plabel { font-size: 10px; letter-spacing: .07em; text-transform: uppercase; font-weight: 700; padding: 3px 8px; border-radius: 6px; white-space: nowrap; }
+.rail .p1 .plabel { color: var(--accent-ink); background: var(--accent); }
+.rail .p2 .plabel { color: #fff; background: var(--blue); }
+.rail .group a { color: var(--ink); }
+.rail a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+section.view { display: none; }
+section.view.active { display: block; }
+
+/* where-am-I strip */
+.flow { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 8px 0 14px; font-size: 13px; }
+.flow span { padding: 4px 10px; border-radius: 999px; background: var(--tint); color: var(--ink-2); }
+.flow span.colab { background: var(--blue-bg); color: var(--blue); font-weight: 600; }
+.flow span.sheet { background: var(--tint); color: var(--ink); font-weight: 600; }
+.flow i { color: var(--ink-2); font-style: normal; }
+
+.block { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin: 14px 0; }
+.block .num { font-family: var(--mono); font-size: 12px; color: var(--accent); font-weight: 500; }
+.block h3 { margin-top: 2px; }
+.block.colab { background: var(--blue-bg); border-color: var(--blue); }
+.block.colab .num { color: var(--blue); }
+.block.colab h3::before { content: "💻 "; }
+.block.colab ol { margin: 6px 0 0 1.2em; padding: 0; }
+.block.colab li { margin: 3px 0; }
+.bring { margin-top: 10px; font-size: 13.5px; background: var(--paper); border-radius: 6px; padding: 8px 12px; }
+.hint { font-size: 13px; color: var(--ink-2); }
+textarea, input[type=text], input[type=number] { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; width: 100%; box-sizing: border-box; }
+textarea { min-height: 84px; resize: vertical; }
+textarea.short { min-height: 56px; }
+input[type=number] { width: 7em; font-variant-numeric: tabular-nums; }
+.row { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: end; }
+.row > label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--ink-2); min-width: 0; flex: 1 1 160px; }
+.row > label.sm { flex: 0 1 170px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.grid2 > label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--ink-2); min-width: 0; }
+button { font: inherit; font-weight: 500; font-size: 14px; border-radius: 8px; border: 1px solid var(--line); background: var(--paper); color: var(--ink); padding: 8px 14px; cursor: pointer; }
+button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+button.quiet { background: transparent; }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.note { font-size: 13px; padding: 8px 12px; border-radius: 6px; background: var(--tint); margin-top: 10px; }
+.note.ok { background: var(--ok-bg); } .note.warn { background: var(--warn-bg); }
+.pv { display: none; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; margin-top: 10px; }
+.card { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; background: var(--bg); display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.card .t { font-weight: 500; line-height: 1.35; overflow-wrap: anywhere; }
+.card .meta { font-family: var(--mono); font-size: 11.5px; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 4px 10px; }
+.card .idx { font-family: var(--mono); font-size: 11px; color: var(--accent); }
+.card.train-f { background: var(--train-f); border-color: var(--accent); } .card.train-9 { background: var(--train-9); border-color: var(--blue); }
+.card .lab { font-size: 12px; font-weight: 700; letter-spacing: .04em; }
+.card.train-f .lab { color: var(--accent); } .card.train-9 .lab { color: var(--blue); }
+.seg { display: inline-flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; align-self: flex-start; }
+.seg button { border: 0; border-radius: 0; padding: 5px 10px; font-size: 13px; background: transparent; }
+.seg button + button { border-left: 1px solid var(--line); }
+.seg button.on { background: var(--ink); color: var(--bg); }
+.card.right { border-color: var(--ok); } .card.wrong { border-color: var(--warn); }
+.card .truth { font-size: 12px; font-weight: 600; }
+.card.right .truth { color: var(--ok); } .card.wrong .truth { color: var(--warn); }
+.members { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; }
+.members button.on { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12px; color: var(--ink-2); font-weight: 600; letter-spacing: .04em; }
+td.num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+td input[type=text] { min-width: 7em; }
+.tablewrap { overflow-x: auto; }
+.rules { display: flex; flex-direction: column; gap: 6px; }
+.rules .r { display: flex; gap: 8px; align-items: center; }
+.rules .r span { font-family: var(--mono); font-size: 12px; color: var(--ink-2); width: 2.2em; flex: none; }
+.count { font-family: var(--mono); font-size: 12px; color: var(--ink-2); }
+pre.code { font-family: var(--mono); font-size: 12.5px; background: var(--tint); border-radius: 8px; padding: 12px; overflow-x: auto; white-space: pre; margin: 10px 0 0; }
+.verdict { display: flex; flex-wrap: wrap; gap: 8px; }
+.verdict label { display: inline-flex; gap: 6px; align-items: center; border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; cursor: pointer; }
+.verdict label:has(input:checked) { border-color: var(--accent); background: var(--tint); }
+.prefix { font-family: var(--mono); font-size: 16px; font-weight: 500; }
+.ta td:first-child { white-space: nowrap; }
+.toast { position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--bg); padding: 10px 16px; border-radius: 8px; font-size: 14px; opacity: 0; transition: opacity .2s; pointer-events: none; }
+.toast.show { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .toast { transition: none; } }
+.dialog { border: 1px solid var(--line); border-radius: 10px; background: var(--paper); padding: 14px 16px; margin-top: 10px; }
+.print-header { display: none; }
+.card .pick { display: none; }
+.lm-steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 10px; }
+.lm-step { background: var(--bg); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; min-width: 0; }
+.lm-step .k { font-family: var(--mono); font-size: 12px; color: var(--accent); }
+.lm-step h4 { margin: 2px 0 6px; font-size: 14px; }
+.lm-step p { font-size: 13px; margin: 0; }
+.bar { display: flex; align-items: center; gap: 8px; font-size: 13px; margin: 3px 0; }
+.bar .w { font-family: var(--mono); min-width: 5em; }
+.bar .b { height: 10px; background: var(--accent); border-radius: 3px; }
+.bar .pc { font-family: var(--mono); color: var(--ink-2); }
+.fig { margin: 10px 0 0; } .fig svg { width: 100%; max-width: 100%; height: auto; display: block; color: var(--ink); font-family: var(--body); } .fig figcaption { font-size: 13px; color: var(--ink-2); margin-top: 8px; }
+.chain { font-family: var(--mono); font-size: 14px; background: var(--tint); border-radius: 8px; padding: 10px 12px; overflow-x: auto; white-space: nowrap; }
+.chain b { color: var(--accent); }
+.en { display: block; color: var(--ink-2); font-size: 13px; line-height: 1.45; margin-top: 2px; }
+p.hint + .en, .hint .en { margin-top: 2px; }
+li .en { display: block; }
+.en-h { font-weight: 400; color: var(--ink-2); font-size: 0.85em; }
+.bring .en { font-size: 12.5px; }
+
+@media print {
+  :root { --bg: #fff; --paper: #fff; --ink: #000; --ink-2: #333; --line: #999; --tint: #f2f2f2; --accent: #000; --blue: #000; --blue-bg: #fff; --train-f: #f4f4f4; --train-9: #f4f4f4; }
+  body { font-size: 11pt; }
+  body::before, .rail, .topbar, .actions, button, pre.code, .hint, .lede, .toast, .dialog, .no-print, .count, .members, .flow, .block.colab { display: none !important; }
+  .print-header { display: block; border-bottom: 2px solid #000; margin-bottom: 10pt; padding-bottom: 6pt; }
+  .print-header .ph { font-size: 10pt; }
+  section.view { display: block !important; break-before: page; }
+  section.view#view-setup { break-before: auto; }
+  section.view#view-print, section.view#view-lm-intro { display: none !important; }
+  h2 { font-size: 16pt; margin: 0 0 6pt; }
+  .block { break-inside: avoid; border: 1px solid #999; padding: 8pt 10pt; margin: 8pt 0; }
+  textarea, input[type=text], input[type=number] { display: none !important; }
+  .pv { display: block; white-space: pre-wrap; border: 1px solid #bbb; border-radius: 3pt; padding: 4pt 6pt; min-height: 1.2em; font-size: 10.5pt; }
+  .pv:empty::before { content: "—"; color: #999; }
+  .cards { grid-template-columns: repeat(3, 1fr); gap: 6pt; }
+  .card { padding: 6pt 8pt; font-size: 9.5pt; }
+  .seg { display: none; }
+  .card .pick { display: block; font-weight: 600; }
+  .verdict label { border: 1px solid #999; }
+  a[href]::after { content: ""; }
+}
+</style>
+
+<div class="wrap">
+  <div class="print-header">
+    <div style="font-family:var(--display);font-size:18pt;font-weight:700">Activity 11 — Introduction to AI · Answer Sheet</div>
+    <div class="ph" id="phLine">กลุ่ม — · สมาชิก —</div>
+  </div>
+  <h1>Activity 11 — Answer Sheet</h1>
+  <p class="lede">Build it. Count it. Ask it. — หน้านี้คือ<strong>คู่มือหลัก</strong>ของกิจกรรม อ่านและตอบคำถามที่นี่ เมื่อถึงกล่องสีฟ้า 💻 ค่อยสลับไปรันโค้ดใน Colab แล้วกลับมาที่นี่ คำตอบทุกอย่างบันทึกอัตโนมัติในเบราว์เซอร์นี้ ตอนจบให้ print หน้านี้เป็น PDF ส่งใน myCourseVille<span class="en">This page is the main guide. Read and answer here; switch to Colab only at a blue 💻 box, then come back. Everything saves automatically in this browser. At the end, print this page to PDF and upload it to myCourseVille.</span></p>
+  <div class="topbar">
+    <span class="chip" id="chipGroup">กลุ่ม —</span>
+    <span class="status" id="saveStatus">ยังไม่ได้บันทึก</span>
+  </div>
+  <nav class="rail" id="rail">
+    <a href="#setup" data-view="setup"><span class="dot"></span>Setup</a>
+    <div class="group p1"><span class="plabel" title="Classification — which label?">Part 1</span>
+      <a href="#stage-1" data-view="stage-1"><span class="dot"></span>1 Be the model</a>
+      <a href="#stage-2" data-view="stage-2"><span class="dot"></span>2 Tree</a>
+    </div>
+    <div class="group p2"><span class="plabel" title="Language models — what comes next?">Part 2</span>
+      <a href="#lm-intro" data-view="lm-intro"><span class="dot"></span>LM basics</a>
+      <a href="#stage-3" data-view="stage-3"><span class="dot"></span>3 Be the LM</a>
+      <a href="#stage-4" data-view="stage-4"><span class="dot"></span>4 Tiny LLM</a>
+      <a href="#stage-5" data-view="stage-5"><span class="dot"></span>5 Real LLM</a>
+      <a href="#stage-6" data-view="stage-6"><span class="dot"></span>6 Decide</a>
+    </div>
+    <a href="#print" data-view="print"><span class="dot"></span>Print</a>
+  </nav>
+
+  <!-- ============ SETUP ============ -->
+  <section class="view" id="view-setup">
+    <h2>เริ่มต้น <span class="en-h">· Setup</span></h2>
+    <div class="flow"><span class="sheet">📄 หน้านี้ · this page</span><i>→</i><span class="colab">💻 เปิด Colab เตรียมไว้ · open Colab once</span><i>→</i><span class="sheet">📄 กลับมาเริ่ม Stage 1 · back here for Stage 1</span></div>
+    <div class="block">
+      <div class="num">S.1</div><h3>กลุ่มของเรา <span class="en-h">· Our group</span></h3>
+      <div class="row">
+        <label class="sm">หมายเลขกลุ่ม · Group number (ให้ TA เป็นผู้กำหนด · given by the TA) <input type="number" id="groupNo" min="1" max="99" placeholder="7"></label>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <label>สมาชิก 1 · Member 1 (ชื่อ · รหัสนิสิต / name · student ID) <input type="text" id="m1" placeholder="พลอย 673xxxxx21"></label>
+        <label>สมาชิก 2 · Member 2 <input type="text" id="m2"></label>
+        <label>สมาชิก 3 · Member 3 (optional) <input type="text" id="m3"></label>
+        <label>สมาชิก 4 · Member 4 (optional) <input type="text" id="m4"></label>
+      </div>
+    </div>
+    <div class="block">
+      <div class="num">S.2</div><h3>วิธีใช้กิจกรรมนี้ <span class="en-h">· How this activity works</span></h3>
+      <p>กิจกรรมมี 6 stage ทำ<strong>ตามลำดับและทำด้วยกันทั้งกลุ่ม</strong> ใช้ 2 อย่างคู่กัน:<span class="en">There are 6 stages. Do them in order and together as a group, using two things side by side:</span></p>
+      <div class="tablewrap"><table><thead><tr><th>ที่ไหน · Where</th><th>ใช้ทำอะไร · What for</th></tr></thead><tbody>
+        <tr><td>📄 <strong>หน้านี้ (answer sheet)</strong></td><td>อ่านคำสั่ง · เดาและเขียนกฎ · กรอกตัวเลขที่ได้จาก Colab · ตอบคำถาม · ให้ TA เซ็น · print ส่ง<span class="en">Read instructions · guess and write rules · type in the numbers from Colab · answer questions · get TA initials · print and submit</span></td></tr>
+        <tr><td>💻 <strong>Colab notebook</strong></td><td>รันโค้ดเท่านั้น — จะมีกล่องสีฟ้าบอกทุกครั้งว่าต้องรัน cell ไหน และต้องเอาตัวเลขอะไรกลับมา เมื่อรันครบ notebook จะมี cell ⏸ บอกให้กลับมาที่หน้านี้<span class="en">Run code only. A blue box always tells you which cells to run and which numbers to bring back. At the end of each stage a ⏸ cell in the notebook sends you back here.</span></td></tr>
+      </tbody></table></div>
+      <p style="margin-top:10px">Stage 1, 3, 6 ทำบนหน้านี้อย่างเดียว · Stage 2, 4, 5 ทำแบบ 📄 → 💻 → 📄 · เมื่อเห็น ✋ ให้เรียก TA — TA จะดู notebook กับหน้านี้ แล้วถามสมาชิก<em>ทุกคน</em>เกี่ยวกับ stage นั้น ดังนั้นก่อนเรียกให้แน่ใจว่าทุกคนอธิบายได้ · “cell 2.3” หมายถึงหัวข้อ 2.3 ใน notebook ให้รันทุก code cell ใต้หัวข้อนั้นจากบนลงล่าง<span class="en">Stages 1, 3 and 6 are done on this page only; stages 2, 4 and 5 go 📄 → 💻 → 📄. When you see ✋, call a TA: the TA checks the notebook and this page and asks <em>every</em> member about that stage, so make sure everyone can explain before you call. “Cell 2.3” means section 2.3 in the notebook: run every code cell under that heading, top to bottom.</span></p>
+    </div>
+    <div class="block colab">
+      <div class="num">S.3</div><h3>เตรียม Colab (ทำครั้งเดียว) <span class="en-h">· Prepare Colab (once)</span></h3>
+      <ol>
+        <li>เปิด notebook <code>Activity_11_Intro_to_AI.ipynb</code> จากลิงก์ที่อาจารย์ให้ แล้ว <strong>File → Save a copy in Drive</strong> (กลุ่มละ 1 สำเนา)<span class="en">Open the notebook from the link your instructor gave you, then File → Save a copy in Drive (one copy per group).</span></li>
+        <li>ใน cell แรก (<code>Setup</code>) ใส่ <code>GROUP_NO</code> และ <code>MEMBERS</code> ให้ตรงกับ S.1 แล้วรัน cell Setup ทั้ง 3 cell<span class="en">In the first cell (Setup) enter GROUP_NO and MEMBERS to match S.1, then run all three Setup cells.</span></li>
+        <li>ถ้า Colab restart session ค่าที่ stamp ไว้ยังอยู่ใน <code>passport.json</code> แต่ตัวแปรทั้งหมดหาย ให้รัน Setup ใหม่ แล้วคลิก cell ที่ทำค้างอยู่ เลือก <strong>Runtime → Run before</strong> ถ้า Colab <em>หลุดการเชื่อมต่อ</em> <code>passport.json</code> จะหายด้วย ให้รันใหม่ตั้งแต่ต้น<span class="en">If Colab restarts the session, your stamps survive in passport.json but all variables are lost: run Setup again, then click the cell you were working on and choose <strong>Runtime → Run before</strong>. If Colab <em>disconnects</em>, passport.json is lost too, so run everything from the top.</span></li>
+      </ol>
+      <div class="bring">เสร็จแล้ว<strong>ปล่อย Colab ไว้ในแท็บของมัน</strong> (อย่าปิดแท็บ) แล้วกลับมาที่หน้านี้ → Stage 1 ยังไม่ต้องใช้ Colab<span class="en">Then leave Colab open in its own tab and come back here → Stage 1 does not need Colab yet.</span></div>
+    </div>
+  </section>
+
+  <!-- ============ STAGE 1 ============ -->
+  <section class="view" id="view-stage-1">
+    <div class="eyebrow" style="margin-top:26px">Part 1 · Classification — which label?</div>
+    <h2 style="margin-top:4px">Stage 1 — เป็น model เอง <span class="en-h">· Be the model</span> <span class="eyebrow">· 15 นาที · หน้านี้เท่านั้น / this page only</span></h2>
+    <div class="flow"><span class="sheet">📄 ทั้ง stage ทำบนหน้านี้ · all on this page</span><i>→</i><span class="colab">💻 Colab ตอนท้าย (แค่ copy-paste) · Colab at the end, copy-paste only</span></div>
+    <p class="lede">ก่อนที่เครื่องจะเรียนรู้ เราจะลองเรียนรู้แบบเดียวกันด้วยตัวเอง: ดู<strong>ตัวอย่างที่มีเฉลย</strong>ก่อน แล้วค่อยไป<strong>ทายข้อที่ไม่มีเฉลย</strong> — นี่คือสิ่งที่ decision tree จะทำใน Stage 2 เป๊ะ ๆ<span class="en">Before the machine learns, we learn the same way ourselves: look at <strong>labelled examples</strong> first, then <strong>guess the unlabelled ones</strong> — exactly what the decision tree will do in Stage 2.</span></p>
+
+    <div class="block">
+      <div class="num">1.0</div><h3>รู้จักสองช่องก่อน — นี่คือ training data ของคุณ <span class="en-h">· Meet the two channels — this is your training data</span></h3>
+      <div class="grid2">
+        <div><strong style="color:var(--accent)">FAROSE</strong> — ช่องเล่าเรื่องยาว ๆ ประวัติศาสตร์ ชีวประวัติ ท่องเที่ยว ชื่อตอนยาว มีชื่อซีรีส์ + เลข EP นำหน้า (ไกลบ้าน, ช่างเชื่อม, เที่ยวทิพย์, PYMK) <span class="en">Long-form storytelling: history, biography, travel. Long titles that start with a series name + EP number.</span> <a href="https://www.youtube.com/@FAROSECHANNEL" target="_blank" rel="noopener">youtube.com/@FAROSECHANNEL</a></div>
+        <div><strong style="color:var(--blue)">9arm</strong> — ช่องคุยเรื่องเทคโนโลยี แกดเจ็ต แอป เกม วงการไอที ชื่อตอนสั้น ตรง ๆ มักมีคำอังกฤษ (Vlog #, [รีวิว], CPU, GPS) <span class="en">Tech commentary: gadgets, apps, games, the IT industry. Short, direct titles, often with English words.</span> <a href="https://www.youtube.com/@9arm." target="_blank" rel="noopener">youtube.com/@9arm.</a></div>
+      </div>
+      <p class="hint" style="margin-top:10px">ด้านล่างคือตัวอย่าง 8 คลิปที่<strong>มีเฉลย</strong> พร้อมตัวเลข 4 อย่างที่คอมพิวเตอร์ก็จะเห็นเหมือนกัน: เวลาที่โพสต์ · ความยาวชื่อ (ตัวอักษร) · ความยาวคลิป (นาที) · วัน  ดูให้ดีว่าอะไรต่างกัน<span class="en">Below are 8 videos <strong>with the answer shown</strong>, plus the four numbers the computer will also see: upload hour · title length (characters) · video length (minutes) · weekday. Look for what differs.</span></p>
+      <div class="cards" id="cardsTrain"></div>
+      <div class="note">ตัวอย่าง 8 ข้อนี้คือ <strong>training data</strong> ส่วน 12 ใบใน 1.A คือ <strong>test data</strong> — เรียนรู้ pattern จากชุดแรก แล้วพิสูจน์กับชุดหลัง<span class="en">These 8 are your training data; the 12 cards in 1.A are your test data. Learn the pattern from the first set, prove it on the second.</span></div>
+    </div>
+
+    <div class="block">
+      <div class="num">1.A</div><h3>ทายคนเดียวก่อน (test data) <span class="en-h">· Guess alone first (test data)</span></h3>
+      <p class="hint">แต่ละคนเลือกชื่อตัวเอง แล้วติดป้าย 12 ใบว่าเป็น FAROSE หรือ 9arm โดย<strong>ไม่คุยกัน</strong> เสร็จแล้วให้คนถัดไปทำ<span class="en">Each member selects their own name and labels all 12 cards FAROSE or 9arm <strong>without talking</strong>; then the next member does the same.</span></p>
+      <div class="members" id="memberPick"></div>
+      <div class="cards" id="cardsA"></div>
+    </div>
+
+    <div class="block">
+      <div class="num">1.B</div><h3>ตกลงกฎร่วมกัน <span class="en-h">· Agree on rules</span></h3>
+      <p class="hint">ตอนนี้คุยกันได้ เขียนกฎแบบ ใช่/ไม่ใช่ อย่างน้อย 3 ข้อที่ทั้งกลุ่มเห็นตรงกัน เรียงตามลำดับที่จะเช็ก <strong>ใบไหนเข้ากฎข้อแรกที่ใช้ได้ ให้ข้อนั้นตัดสินเลย</strong> กฎหนึ่งข้อ = เบาะแสหนึ่งอย่าง + ผลลัพธ์ เช่น <em>“ถ้าชื่อมีคำว่า EP → FAROSE”</em> หรือ <em>“ถ้าโพสต์ก่อนเที่ยง → 9arm”</em> ให้ข้อสุดท้ายเป็นค่าเริ่มต้น เช่น <em>“ถ้าไม่เข้าข้อไหนเลย → 9arm”</em> (นับเป็น 1 ใน 3 ข้อได้) “มีคำว่า EP” หมายถึงคำ EP เต็ม ๆ (EP27 นับ, EPIC ไม่นับ)<span class="en">Now talk. Write at least three yes/no rules the whole group agrees on, in the order you would check them. <strong>The first rule that fits a card decides it.</strong> One rule = one clue + one outcome, e.g. “If the title contains EP → FAROSE” or “If posted before noon → 9arm”. Make the last rule a default, e.g. “if none of the above → 9arm” (it counts as one of the three). “Contains EP” means the whole word EP (EP27 counts, EPIC does not).</span></p>
+      <div class="rules" id="rules"></div>
+      <div class="actions"><button type="button" id="addRule">+ เพิ่มกฎ · Add a rule</button></div>
+    </div>
+
+    <div class="block">
+      <div class="num">1.C</div><h3>ใช้กฎติดป้าย แล้วตรวจคะแนน <span class="en-h">· Apply the rules, then score</span></h3>
+      <p class="hint">ติดป้าย 12 ใบอีกครั้งโดย<strong>ทำตามกฎเท่านั้น</strong> (ไม่ใช้ความรู้สึก) แล้วกด <strong>ตรวจคะแนน</strong> จะเห็นเฉลย คะแนนของแต่ละคนจาก 1.A และ accuracy ของกฎกลุ่ม — ตัวเลขนี้จะเอาไปใส่ใน Colab<span class="en">Label the 12 cards again by <strong>following your rules only</strong> (not your gut), then press <strong>Score</strong>: the answers appear, with each member’s score from 1.A and the accuracy of the group’s rules — that number goes into Colab.</span></p>
+      <div class="cards" id="cardsC"></div>
+      <div class="actions"><button type="button" class="primary" id="scoreBtn">ตรวจคะแนน · Score</button><button type="button" class="quiet" id="hideBtn" hidden>ซ่อนเฉลย · Hide answers</button></div>
+      <div id="scoreOut"></div>
+    </div>
+
+    <div class="block">
+      <div class="num">1.D</div><h3>ขุดคำสำคัญ (keywords) <span class="en-h">· Mine the keywords</span></h3>
+      <p class="hint">คำหรือวลีภาษาไทย/อังกฤษที่คิดว่าจะพบ<em>มากกว่า</em>ในชื่อคลิปของช่องหนึ่ง อย่างน้อยช่องละ 2 คำ คั่นด้วยจุลภาค คิดจากสิ่งที่ช่องนั้นพูดถึง ไม่ใช่แค่จาก 12 ใบ — ระบบจะค้นหาคำของคุณในชื่อคลิปและแยกตัวพิมพ์ใหญ่/เล็ก คำภาษาอังกฤษต้องเป็นคำเต็ม (EP เจอใน EP27 แต่ไม่เจอใน EPIC) คำภาษาไทยเจอตรงไหนก็ได้ คำที่พบน้อยกว่า 5 คลิปจะถูกตัดทิ้งใน Stage 2<span class="en">Thai or English words/phrases you expect to appear <em>more</em> in one channel’s titles. At least two per channel, separated by commas. Think about what each channel talks about, not only the 12 cards. The notebook looks for your word in each title and capital letters matter; an English word must be a whole word (EP matches EP27, not EPIC); a Thai word matches anywhere. Words found in fewer than 5 videos are dropped in Stage 2.</span></p>
+      <div class="grid2">
+        <label>keywords ของ FAROSE <input type="text" id="kwF" placeholder="ไกลบ้าน, EP, เที่ยว"></label>
+        <label>keywords ของ 9arm <input type="text" id="kw9" placeholder="แอป, รีวิว, Vlog"></label>
+      </div>
+    </div>
+
+    <div class="block colab no-print">
+      <div class="num">1.E</div><h3>ส่งไม้ต่อให้ Colab <span class="en-h">· Hand over to Colab</span></h3>
+      <ol>
+        <li>กดปุ่มด้านล่าง เพื่อ copy ค่าที่กลุ่มตอบใน 1.B–1.D (ต้องกด “ตรวจคะแนน” ใน 1.C ก่อน)<span class="en">Press the button below to copy the group’s answers from 1.B–1.D (press Score in 1.C first).</span></li>
+        <li>ไปที่ Colab → cell <strong>2.1</strong> → ลบของเดิมระหว่างบรรทัด <code># &gt;&gt;&gt; PASTE</code> กับ <code># &lt;&lt;&lt; END PASTE</code> แล้ววางบล็อกที่ copy ไว้<span class="en">Go to Colab → cell 2.1 → delete what is between the <code># &gt;&gt;&gt; PASTE</code> and <code># &lt;&lt;&lt; END PASTE</code> lines and paste the copied block there.</span></li>
+        <li>ยังไม่ต้องรัน — ไปต่อที่ Stage 2 บนหน้านี้ก่อน<span class="en">Do not run it yet — continue to Stage 2 on this page first.</span></li>
+      </ol>
+      <div class="actions"><button type="button" class="primary" id="copyS1">Copy ค่า Stage 1 สำหรับ cell 2.1 · Copy Stage 1 block for cell 2.1</button></div>
+      <pre class="code" id="codeS1"></pre>
+    </div>
+  </section>
+
+  <!-- ============ STAGE 2 ============ -->
+  <section class="view" id="view-stage-2">
+    <h2>Stage 2 — ให้เครื่องหากฎเอง <span class="en-h">· Let the machine find the rules (decision tree)</span> <span class="eyebrow">· 30 นาที</span></h2>
+    <div class="flow"><span class="sheet">📄 อ่าน 2.0 · read 2.0</span><i>→</i><span class="colab">💻 รัน cell 2.1 – 2.5 · run cells 2.1–2.5</span><i>→</i><span class="sheet">📄 ตอบ Q2.1 – Q2.4 แล้วกรอก 2.6 · answer Q2.1–Q2.4, then fill 2.6</span><i>→</i><span>✋ TA</span></div>
+    <div class="block">
+      <div class="num">2.0</div><h3>เกิดอะไรขึ้นใน stage นี้ <span class="en-h">· What happens in this stage</span></h3>
+      <p>ใน Stage 1 เราเขียนกฎเอง ตอนนี้ <strong>decision tree</strong> จะค้นหากฎ ใช่/ไม่ใช่ ที่ดีที่สุดจากข้อมูล 1,282 คลิปด้วยตัวเอง เราจะได้เห็นว่าเครื่องเห็นด้วยกับเราไหม และจะเจอ “กับดัก” สำคัญอย่างหนึ่งของ machine learning — เราจะ train กับคลิปปี 2017–2022 แล้ว test กับปี 2023 ขึ้นไป<span class="en">In Stage 1 you wrote the rules. Now a <strong>decision tree</strong> searches the 1,282 videos for the best yes/no rules by itself. You will see whether the machine agrees with you, and meet one of the big “traps” of machine learning — we train on 2017–2022 videos and test on 2023 onwards.</span></p>
+    </div>
+    <div class="block colab">
+      <div class="num">2.1 – 2.5</div><h3>ไปที่ Colab <span class="en-h">· Go to Colab</span></h3>
+      <ol>
+        <li><strong>cell 2.1</strong> — ตรวจว่าวางค่าจาก 1.E แล้ว รัน (🔒 ถ้า error ให้แก้ตามข้อความ)<span class="en">Check the values from 1.E are pasted, then run (🔒 if it errors, fix what the message says).</span></li>
+        <li><strong>cell 2.2</strong> — ตาราง feature 5 อย่าง อ่านด้วยกัน<span class="en">The five feature tables — read them together.</span></li>
+        <li><strong>cell 2.3</strong> — ทดสอบ keywords ของกลุ่ม ถ้าเหลือน้อยกว่า 3 คำ notebook จะให้กลับไปแก้ที่ 2.1<span class="en">Tests your keywords; if fewer than 3 survive, the notebook sends you back to 2.1.</span></li>
+        <li><strong>cell 2.4</strong> — train tree แบบแบ่งตามปี และแบบสุ่ม จะได้ตัวเลข 3 ตัว + ตาราง feature importance<span class="en">Trains the tree with a year split and a random split → three numbers + a feature-importance table.</span></li>
+        <li><strong>cell 2.5</strong> — ดูต้นไม้ และ “คลิปที่หลอก tree ได้” แล้วรัน cell 🔒 stamp (จะ download <code>tree.png</code> และ <code>tree.svg</code> — เก็บไว้ 1 คน ใช้ใน Stage 5) จากนั้นอ่าน cell ⏸ ที่ปิดท้าย<span class="en">Look at the tree and the “video that fooled the tree”, run the 🔒 stamp cell (downloads tree.png and tree.svg — one member keeps them for Stage 5), then read the ⏸ cell at the end.</span></li>
+      </ol>
+      <div class="bring"><strong>เอากลับมา (ตอบคำถามก่อน แล้วกรอกที่ 2.6):</strong> train % · test (year split) % · test (random split) % · top feature · word features ที่เหลือ · ชื่อคลิปที่หลอก tree<span class="en">Bring back (answer the questions, then fill 2.6): train %, test (year split) %, test (random split) %, top feature, the word features kept, the title that fooled the tree.</span></div>
+    </div>
+    <div class="block"><div class="num">Q2.1</div><h3>Features</h3><p class="hint">คลิปหนึ่งโพสต์เวลา 18:00 ชื่อยาว 45 ตัวอักษร น่าจะเป็นช่องไหน? (ดูตารางเวลาและตารางความยาวชื่อใน cell 2.2 · เวลาเป็นเวลาไทย) และใน 5 feature ที่เป็นตัวเลข feature ไหนที่คุณ<em>ไว้ใจน้อยที่สุด</em>ถ้าเอาไปใช้ในปี 2027 เพราะอะไร?<span class="en">A video was posted at 18:00 with a 45-character title. Which channel? (Use the hour table and the title-length table in cell 2.2; hours are Bangkok time.) Which of the five numeric features would you trust <em>least</em> in 2027, and why?</span></p><textarea id="q21"></textarea></div>
+    <div class="block"><div class="num">Q2.2</div><h3>Keywords ของเรา <span class="en-h">· Our keywords</span></h3><p class="hint">keyword ไหนแยกสองช่องได้ชัดที่สุด? คำไหนทำให้แปลกใจ? ทำไมถึงไม่ควรเก็บคำที่พบแค่ 1–2 คลิป?<span class="en">Which keyword separated the channels most cleanly? Which one surprised you? Why not keep a word that appears in only 1–2 videos?</span></p><textarea id="q22"></textarea></div>
+    <div class="block"><div class="num">Q2.3</div><h3>ตัวเลขสามตัว กับดักหนึ่งอัน <span class="en-h">· Three numbers, one trap</span></h3><p class="hint">เทียบตัวเลข 3 ตัว: train, test (แบ่งตามปี), test (สุ่ม) (ก) ทำไม random split ดูดีกว่า และทำไมตัวเลขนั้น “โกหก” เกี่ยวกับอนาคต? (คำใบ้: data leakage, memorisation) (ข) ช่องว่างระหว่าง train กับ test เป็นสัญญาณเตือนไหม? ดู 2 คอลัมน์ใหม่ใน cell 2.3: คำไหนของเรา “เปลี่ยนความหมาย” หลังปี 2022? (ค) การ์ด 12 ใบใน Stage 1 มาจากปี 2017–2022 ซึ่ง tree ใช้ train ไปแล้ว ถ้าเอา tree มาทายการ์ดชุดนี้ จะยุติธรรมไหม? tree เลือกเบาะแสหลักตัวเดียวกับเราไหม?<span class="en">Compare train, test (year split) and test (random split). (a) Why does the random split look better, and why is it a “lie” about the future? (hint: data leakage, memorisation) (b) Is the train–test gap a warning sign? Look at the two new columns in cell 2.3: which of your words changed meaning after 2022? (c) The 12 cards in Stage 1 are from 2017–2022, the years the tree trained on. Would testing the tree on them be fair? Did the tree pick the same main clue as your rules?</span></p><textarea id="q23"></textarea></div>
+    <div class="block"><div class="num">Q2.4</div><h3>ข้างในต้นไม้ <span class="en-h">· Inside the tree</span></h3><p class="hint">แปล 2 เงื่อนไขแรกของต้นไม้เป็นประโยคธรรมดา แล้วดูคลิปที่หลอก tree ได้ (เลือกคลิปไหนในรายการของ cell 2.5 ก็ได้): ทำไมกฎถึงพลาด? ถ้าเป็นคน ดูแค่ชื่อจะตอบถูกไหม?<span class="en">Translate the first two splits of the tree into plain sentences. Then look at the video that fooled the tree (any video in the cell 2.5 list is fine): why did the rules miss? Would a person get it right from the title alone?</span></p><textarea id="q24"></textarea>
+    </div>
+    <div class="block">
+      <div class="num">2.6</div><h3>ตัวเลขจาก Colab <span class="en-h">· Numbers from Colab</span></h3>
+      <p class="hint">พิมพ์ตัวเลขให้ตรงกับที่ Colab แสดง ครบทุกหลักทศนิยม (cell 5.1 จะเช็ก)<span class="en">Type the numbers exactly as Colab prints them, with all decimals (cell 5.1 checks them).</span></p>
+      <div class="row">
+        <label class="sm">Train accuracy % <input type="number" step="0.01" id="trainAcc"></label>
+        <label class="sm">Test (year split) % <input type="number" step="0.01" id="testAcc"></label>
+        <label class="sm">Test (random split) % <input type="number" step="0.01" id="randAcc"></label>
+        <label>Top feature (exact name from Colab) <input type="text" id="topFeat" placeholder="has_EP"></label>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <label>Word features ที่ notebook เก็บไว้ · word features kept <input type="text" id="wordsKept"></label>
+        <label>ชื่อคลิปที่หลอก tree ได้ (คลิปแรกในรายการ) · title that fooled the tree (first in the list) <input type="text" id="fooledTitle"></label>
+      </div>
+      <div class="note">✋ เรียก TA ก่อนไป Stage 3 — ให้ดูตัวเลข 3 ตัว แล้วช่วยกันอธิบายว่าทำไม random split ถึงดูดีเกินจริง TA จะเซ็นในตาราง 6.4 (แท็บ 6 Decide ล่างสุด)<span class="en">✋ Call a TA before Stage 3: show the three numbers and explain together why the random split looks better than it really is. The TA initials table 6.4 (tab 6 Decide, at the bottom).</span></div>
+    </div>
+  </section>
+
+  <!-- ============ PART 2 INTRO ============ -->
+  <section class="view" id="view-lm-intro">
+    <div class="eyebrow" style="margin-top:26px">Part 2 · Language models — what comes next?</div>
+    <h2 style="margin-top:4px">Language model ทำงานอย่างไร <span class="en-h">· How a language model works</span></h2>
+    <div class="flow"><span class="sheet">📄 อ่านหน้านี้ก่อน Stage 3 (ประมาณ 5 นาที) · read this before Stage 3 (about 5 min)</span></div>
+    <p class="lede">Part 1 ถามว่า <strong>“คลิปนี้เป็นช่องไหน?”</strong> (which label?) Part 2 ถามคำถามใหม่: <strong>“คำต่อไปคืออะไร?”</strong> (what comes next?) — ทั้ง ChatGPT, Gemini และ Claude ตอบคำถามข้อนี้ซ้ำ ๆ ทีละคำ และมันเรียนรู้จากตัวอย่างเหมือน decision tree ไม่มีใครเขียนกฎให้<span class="en">Part 1 asked “which channel is this video?” (which label?). Part 2 asks a new question: “what is the next word?” ChatGPT, Gemini and Claude answer exactly this question over and over, one word at a time — and like the decision tree, they learn it from examples; nobody writes the rules.</span></p>
+
+    <div class="block">
+      <div class="num">LM.1</div><h3>ทั้งกลไกในภาพเดียว <span class="en-h">· The whole mechanism in one picture</span></h3>
+      <figure class="fig">
+      <svg viewBox="0 0 980 400" role="img" aria-label="A language model: a real title is cut into tokens, the tokens are counted to see what follows what, the counts become probabilities, a weighted dice picks the next token, the token is appended, and the loop repeats until the title ends.">
+        <defs>
+          <marker id="lmArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="currentColor"/></marker>
+        </defs>
+        <g fill="none" stroke="currentColor" stroke-width="1.4">
+          <!-- panel frames -->
+          <rect x="12" y="46" width="176" height="236" rx="10"/>
+          <rect x="218" y="46" width="176" height="236" rx="10"/>
+          <rect x="424" y="46" width="176" height="236" rx="10"/>
+          <rect x="630" y="46" width="160" height="236" rx="10"/>
+          <rect x="820" y="46" width="148" height="236" rx="10"/>
+          <!-- arrows between panels -->
+          <line x1="190" y1="164" x2="214" y2="164" marker-end="url(#lmArrow)"/>
+          <line x1="396" y1="164" x2="420" y2="164" marker-end="url(#lmArrow)"/>
+          <line x1="602" y1="164" x2="626" y2="164" marker-end="url(#lmArrow)"/>
+          <line x1="792" y1="164" x2="816" y2="164" marker-end="url(#lmArrow)"/>
+          <!-- loop back: from output panel bottom to tokens panel bottom -->
+          <path d="M894 284 L894 330 L306 330 L306 288" marker-end="url(#lmArrow)" stroke-dasharray="5 4"/>
+        </g>
+        <!-- step numbers -->
+        <g font-family="IBM Plex Mono, monospace" font-size="12" fill="#e8731f" font-weight="600">
+          <text x="24" y="34">1 · title</text><text x="230" y="34">2 · tokens</text><text x="436" y="34">3 · count</text><text x="642" y="34">4 · probability</text><text x="832" y="34">5 · sample</text>
+        </g>
+        <g font-size="12.5" fill="currentColor">
+          <!-- panel 1: a real title -->
+          <text x="100" y="78" text-anchor="middle" font-weight="600">ชื่อคลิปจริง 1,282 ชื่อ</text>
+          <text x="100" y="94" text-anchor="middle" font-size="11" opacity=".7">1,282 real titles</text>
+          <text x="24" y="128" fill="#e8731f" font-weight="600">ไกลบ้าน EP146 ย่างกุ้ง…</text>
+          <text x="24" y="150">ช่างเชื่อม EP113 พักเม้า…</text>
+          <text x="24" y="172">Vlog #45 : ทำไมใช้ mac?</text>
+          <text x="24" y="194">ทำไม EPIC ต้องฟ้อง…</text>
+          <text x="24" y="216">ไกลบ้าน EP60 ฮาวาย…</text>
+          <text x="24" y="238" opacity=".6">⋮</text>
+          <text x="100" y="268" text-anchor="middle" font-size="11" opacity=".7">training data</text>
+          <!-- panel 2: tokens -->
+          <text x="306" y="78" text-anchor="middle" font-weight="600">ตัดเป็น token</text>
+          <text x="306" y="94" text-anchor="middle" font-size="11" opacity=".7">cut into tokens</text>
+          <text x="306" y="118" text-anchor="middle" font-size="11" opacity=".7">ไกลบ้าน EP146 ย่างกุ้ง</text>
+        </g>
+        <!-- token chips -->
+        <g font-size="12.5" font-weight="600">
+          <rect x="232" y="132" width="42" height="24" rx="6" fill="#e8731f"/><text x="253" y="149" text-anchor="middle" fill="#fff">ไกล</text>
+          <rect x="280" y="132" width="48" height="24" rx="6" fill="none" stroke="currentColor"/><text x="304" y="149" text-anchor="middle" fill="currentColor">บ้าน</text>
+          <rect x="334" y="132" width="34" height="24" rx="6" fill="none" stroke="currentColor"/><text x="351" y="149" text-anchor="middle" fill="currentColor">EP</text>
+          <rect x="232" y="164" width="30" height="24" rx="6" fill="none" stroke="currentColor"/><text x="247" y="181" text-anchor="middle" fill="currentColor">N</text>
+          <rect x="268" y="164" width="74" height="24" rx="6" fill="none" stroke="currentColor"/><text x="305" y="181" text-anchor="middle" fill="currentColor">ย่างกุ้ง</text>
+        </g>
+        <g font-size="11" fill="currentColor" opacity=".7">
+          <text x="306" y="214" text-anchor="middle">ตัวเลขทุกตัว → N</text>
+          <text x="306" y="229" text-anchor="middle">every number → N</text>
+          <text x="306" y="268" text-anchor="middle">3,103 distinct tokens</text>
+        </g>
+        <!-- panel 3: counts after ไกล -->
+        <g font-size="12.5" fill="currentColor">
+          <text x="512" y="78" text-anchor="middle" font-weight="600">หลัง “ไกล” มีอะไรตาม?</text>
+          <text x="512" y="94" text-anchor="middle" font-size="11" opacity=".7">what follows “ไกล”? (155 times)</text>
+          <text x="446" y="134">บ้าน</text><text x="580" y="134" text-anchor="end" font-family="IBM Plex Mono, monospace">152</text>
+          <text x="446" y="160">ถึง</text><text x="580" y="160" text-anchor="end" font-family="IBM Plex Mono, monospace">1</text>
+          <text x="446" y="186">มาก</text><text x="580" y="186" text-anchor="end" font-family="IBM Plex Mono, monospace">1</text>
+          <text x="446" y="212">&lt;/s&gt;</text><text x="580" y="212" text-anchor="end" font-family="IBM Plex Mono, monospace">1</text>
+          <text x="512" y="252" text-anchor="middle" font-size="11" opacity=".7">ตารางนับนี้ = โมเดล</text>
+          <text x="512" y="268" text-anchor="middle" font-size="11" opacity=".7">this table is the model</text>
+        </g>
+        <g stroke="currentColor" stroke-width="1" opacity=".35"><line x1="440" y1="142" x2="584" y2="142"/><line x1="440" y1="168" x2="584" y2="168"/><line x1="440" y1="194" x2="584" y2="194"/><line x1="440" y1="220" x2="584" y2="220"/></g>
+        <!-- panel 4: probability bars -->
+        <g font-size="12.5" fill="currentColor">
+          <text x="710" y="78" text-anchor="middle" font-weight="600">หาร → ความน่าจะเป็น</text>
+          <text x="710" y="94" text-anchor="middle" font-size="11" opacity=".7">divide by 155 → P(next | ไกล)</text>
+          <text x="644" y="134">บ้าน</text><text x="782" y="134" text-anchor="end" font-family="IBM Plex Mono, monospace">98 %</text>
+          <text x="644" y="166">ถึง</text><text x="782" y="166" text-anchor="end" font-family="IBM Plex Mono, monospace">0.6 %</text>
+          <text x="644" y="198">มาก</text><text x="782" y="198" text-anchor="end" font-family="IBM Plex Mono, monospace">0.6 %</text>
+          <text x="644" y="230">&lt;/s&gt;</text><text x="782" y="230" text-anchor="end" font-family="IBM Plex Mono, monospace">0.6 %</text>
+          <text x="710" y="268" text-anchor="middle" font-size="11" opacity=".7">“แหลม” · peaked = confident</text>
+        </g>
+        <g>
+          <rect x="644" y="140" width="98" height="8" rx="2" fill="#e8731f"/>
+          <rect x="644" y="172" width="3" height="8" rx="1" fill="currentColor" opacity=".5"/>
+          <rect x="644" y="204" width="3" height="8" rx="1" fill="currentColor" opacity=".5"/>
+          <rect x="644" y="236" width="3" height="8" rx="1" fill="currentColor" opacity=".5"/>
+        </g>
+        <!-- panel 5: sample -->
+        <g font-size="12.5" fill="currentColor">
+          <text x="894" y="78" text-anchor="middle" font-weight="600">ทอยลูกเต๋าถ่วงน้ำหนัก</text>
+          <text x="894" y="94" text-anchor="middle" font-size="11" opacity=".7">roll a weighted dice</text>
+        </g>
+        <!-- dice -->
+        <g transform="translate(866,118)">
+          <rect x="0" y="0" width="56" height="56" rx="10" fill="none" stroke="currentColor" stroke-width="1.6"/>
+          <circle cx="14" cy="14" r="4" fill="#e8731f"/><circle cx="42" cy="14" r="4" fill="#e8731f"/><circle cx="28" cy="28" r="4" fill="#e8731f"/><circle cx="14" cy="42" r="4" fill="#e8731f"/><circle cx="42" cy="42" r="4" fill="#e8731f"/>
+        </g>
+        <g font-size="12.5" fill="currentColor">
+          <text x="894" y="200" text-anchor="middle">→ ได้ <tspan fill="#e8731f" font-weight="700">บ้าน</tspan></text>
+          <text x="894" y="226" text-anchor="middle" font-size="11" opacity=".7">ต่อท้าย · append:</text>
+          <text x="894" y="246" text-anchor="middle" font-weight="600">ไกล <tspan fill="#e8731f">บ้าน</tspan> …</text>
+          <text x="894" y="268" text-anchor="middle" font-size="11" opacity=".7">temperature = กล้าเสี่ยง</text>
+        </g>
+        <!-- loop label -->
+        <g font-size="12" fill="currentColor">
+          <text x="600" y="322" text-anchor="middle" font-weight="600">ทำซ้ำ: ถาม “หลัง บ้าน มีอะไรตาม?” … จนถึง &lt;/s&gt;</text>
+          <text x="600" y="348" text-anchor="middle" font-size="11" opacity=".7">repeat: ask “what follows บ้าน?” … until &lt;/s&gt;</text>
+        </g>
+        <!-- bottom claim -->
+        <g font-size="13" fill="currentColor">
+          <text x="490" y="384" text-anchor="middle" font-weight="600">ไม่มีการ “เข้าใจ” — มีแค่ นับ → หาร → สุ่ม  ·  no understanding, only count → divide → sample</text>
+        </g>
+      </svg>
+      <figcaption>กลไกของ language model จากชื่อคลิปจริงในชุดข้อมูลของเรา: ตัดเป็น token → นับว่าอะไรตามอะไร → เปลี่ยนเป็นความน่าจะเป็น → สุ่มคำต่อไป → ต่อท้ายแล้วทำซ้ำ ChatGPT ทำสิ่งเดียวกันนี้ แค่ตารางใหญ่กว่าหลายพันล้านเท่าและแทนที่ด้วย neural network<span class="en">The mechanism of a language model, using a real title from our dataset: cut into tokens → count what follows what → turn counts into probabilities → sample the next token → append and repeat. ChatGPT does the same thing; its table is billions of times larger and replaced by a neural network.</span></figcaption>
+      </figure>
+    </div>
+    <div class="block">
+      <div class="num">LM.2</div><h3>สี่ขั้นตอนของ language model <span class="en-h">· The four steps</span></h3>
+      <div class="lm-steps">
+        <div class="lm-step"><div class="k">1 · tokens</div><h4>ตัดข้อความเป็นชิ้น</h4><p>คอมพิวเตอร์ไม่เห็น “คำ” มันเห็นชิ้นส่วนที่เรียกว่า token เช่น ไกลบ้าน EP146 → <code>ไกล</code> <code>บ้าน</code> <code>EP</code> <code>N</code><span class="en">Cut text into pieces called tokens. The computer never sees words, only tokens.</span></p></div>
+        <div class="lm-step"><div class="k">2 · count</div><h4>นับว่าอะไรตามอะไร</h4><p>ดูข้อความตัวอย่างทั้งหมด แล้วนับ: หลัง token นี้ token ไหนตามมา กี่ครั้ง — ตารางนับนี้<strong>คือ</strong>โมเดล<span class="en">Go through all the example text and count: after this token, which token follows, how many times. That count table is the model.</span></p></div>
+        <div class="lm-step"><div class="k">3 · probability</div><h4>เปลี่ยนจำนวนเป็นความน่าจะเป็น</h4><p>หารด้วยผลรวมของแถว ได้ P(คำต่อไป | คำก่อนหน้า) เช่น หลัง “ช่างเชื่อม” → EP 99 %<span class="en">Divide by the row total to get P(next | previous), e.g. after “ช่างเชื่อม” → EP 99 %.</span></p></div>
+        <div class="lm-step"><div class="k">4 · sample</div><h4>สุ่มคำต่อไป แล้วทำซ้ำ</h4><p>เลือกคำต่อไปตามความน่าจะเป็น (ทอยลูกเต๋าถ่วงน้ำหนัก) ต่อท้าย แล้วถามคำถามเดิมอีกครั้ง… จนจบประโยค<span class="en">Pick the next token by its probability (a weighted dice), append it, and ask the same question again until the sentence ends.</span></p></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="num">LM.3</div><h3>จากตารางนับ ไปถึง ChatGPT <span class="en-h">· From a count table to ChatGPT</span></h3>
+      <div class="tablewrap"><table><thead><tr><th>โมเดลจิ๋วของเรา · our tiny model</th><th>LLM ตัวจริง · a real LLM</th></tr></thead><tbody>
+        <tr><td>มองย้อนหลัง 1–2 token<span class="en">looks back 1–2 tokens</span></td><td>มองย้อนหลังหลายพันถึงหลายแสน token (context window)<span class="en">looks back thousands to hundreds of thousands of tokens (the context window)</span></td></tr>
+        <tr><td>ตารางนับ<span class="en">a count table</span></td><td>neural network ที่เรียนรู้ว่า token ไหนก่อนหน้าสำคัญ (attention) และแทนแต่ละ token ด้วยตัวเลขหลายพันตัว (embedding)<span class="en">a neural network that learns which earlier tokens matter (attention) and represents each token as thousands of numbers (embedding)</span></td></tr>
+        <tr><td>เรียนจาก ~10,800 token<span class="en">trained on ~10,800 tokens</span></td><td>เรียนจากหลายล้านล้าน token จากอินเทอร์เน็ต หนังสือ โค้ด<span class="en">trained on trillions of tokens from the internet, books, code</span></td></tr>
+        <tr><td colspan="2"><strong>สิ่งที่เหมือนกัน:</strong> ทำนายคำต่อไปที่<em>น่าจะเป็น</em>ที่สุด ไม่ใช่คำที่<em>จริง</em>ที่สุด — ปุ่ม temperature ตัวเดียวกัน ความคล่องแคล่วแบบเดียวกัน และ hallucination แบบเดียวกัน<span class="en">What stays the same: it predicts the most <em>likely</em> next token, not the <em>truest</em> one — the same temperature knob, the same fluency, and the same hallucination.</span></td></tr>
+      </tbody></table></div>
+    </div>
+
+    <div class="block">
+      <div class="num">LM.4</div><h3>ทำไมมันถึง “แต่งเรื่อง” ได้ <span class="en-h">· Why it can make things up</span></h3>
+      <p>ถ้าถามว่า “FAROSE โพสต์กี่คลิปในปี 2024?” โมเดลไม่ได้<em>ค้นหา</em>คำตอบ มันสร้างประโยคที่<em>ดูเหมือน</em>คำตอบ: “FAROSE โพสต์ 1,432 คลิป…” — ตัวเลขนั้นคือ token ที่น่าจะตามมา ไม่ใช่ข้อเท็จจริง ประโยคที่คล่อง ≠ ประโยคที่จริง นี่คือสิ่งที่กลุ่มจะได้เห็นกับตาใน Stage 4 (ชื่อคลิปที่โมเดลแต่งเอง) และ Stage 5 (LLM ตัวจริง)<span class="en">Ask “how many videos did FAROSE post in 2024?” and the model does not <em>look up</em> an answer; it generates a sentence that <em>looks like</em> an answer: “FAROSE posted 1,432 videos…”. That number is a likely next token, not a fact. Fluent ≠ true. You will see this with your own eyes in Stage 4 (titles the model invents) and Stage 5 (a real LLM).</span></p>
+      <div class="note">พร้อมแล้ว → ไปที่ Stage 3: ลองเป็น language model ด้วยตัวเองก่อนให้คอมพิวเตอร์ทำ<span class="en">Ready → go to Stage 3: be the language model yourself before the computer does it.</span></div>
+    </div>
+  </section>
+
+  <!-- ============ STAGE 3 ============ -->
+  <section class="view" id="view-stage-3">
+    <div class="eyebrow" style="margin-top:26px">Part 2 · Language models — what comes next?</div>
+    <h2 style="margin-top:4px">Stage 3 — เป็น language model เอง <span class="en-h">· Be the language model</span> <span class="eyebrow">· 15 นาที · หน้านี้เท่านั้น / this page only</span></h2>
+    <div class="flow"><span class="sheet">📄 ทั้ง stage ทำบนหน้านี้ · all on this page</span><i>→</i><span class="colab">💻 Colab ตอนท้าย (แค่ copy-paste) · Colab at the end, copy-paste only</span></div>
+    <p class="lede">language model ตอบคำถามเดียว: <em>เมื่อรู้คำที่ผ่านมา คำต่อไปคืออะไร?</em> ด้านล่างคือ 6 คำที่ตัดมาจากชื่อคลิปจริง (ตัดเป็น token แบบเดียวกับที่ notebook ตัด) โมเดลจิ๋วของเรามองแค่ “คำก่อนหน้า 1 คำ” ไม่ว่าคำนั้นจะอยู่ตรงไหนของชื่อ แล้วถามว่าคำถัดไปคืออะไร ทายคนเดียวก่อน แล้วค่อยตกลงกันทั้งกลุ่ม — คำใบ้: บางคำเป็นชื่อซีรีส์ที่เห็นใน 1.0 ถ้าคิดว่าชื่อควรจบตรงนั้น ให้เขียน <code>&lt;/s&gt;</code> (ถ้ายังไม่ได้อ่าน “LM ทำงานอย่างไร” ให้อ่านก่อน)<span class="en">A language model answers one question: <em>given the words so far, what comes next?</em> Below are six words cut from real titles (tokenised the same way the notebook does). Our tiny model looks only at the <strong>one previous word</strong>, wherever it sits in a title, and asks what comes next. Guess alone first, then agree as a group — hint: some words are series names you saw in 1.0. If you think the title should end there, write <code>&lt;/s&gt;</code>.</span></p>
+    <div class="block">
+      <div class="num">3.A</div><h3>ทายคนเดียว แล้วตกลงกัน <span class="en-h">· Guess alone, then agree</span></h3>
+      <p class="hint">แต่ละคนเขียนคำถัดไปที่ตัวเองคิด แล้วกลุ่มคุยกันและเขียน<strong>คำตอบของกลุ่ม</strong>แถวละ 1 คำ — นี่คือสิ่งที่จะใส่ใน Colab cell 4.1 พิมพ์ภาษาไทยให้ถูกต้องตรงตัว<span class="en">Each member writes the next word they expect; then the group discusses and writes <strong>one group answer</strong> per row — that is what goes into Colab cell 4.1. Spell the Thai word exactly.</span></p>
+      <div class="tablewrap"><table id="lmTable"><thead><tr><th>คำก่อนหน้า · previous word</th><th id="lmH1">สมาชิก 1</th><th id="lmH2">สมาชิก 2</th><th id="lmH3">สมาชิก 3</th><th id="lmH4">สมาชิก 4</th><th>คำตอบกลุ่ม · group answer</th></tr></thead><tbody></tbody></table></div>
+    </div>
+    <div class="block"><div class="num">Q3.1</div><h3>ตัดสินใจอย่างไร? <span class="en-h">· How did you decide?</span></h3><p class="hint">เลือกคำหนึ่งข้อที่สมาชิกตอบไม่ตรงกัน: แต่ละคนเลือกคำนั้นเพราะอะไร? กำลัง<em>จำ</em>ชื่อคลิปจริงได้ หรือกำลังเดาคำที่ “ฟังดูเข้าท่า”? แบบไหนคือสิ่งที่ notebook จะทำ?<span class="en">Pick one word where members disagreed: why did each person choose their word? Were you <em>remembering</em> real titles, or guessing a word that “sounds right”? Which of those is what the notebook will do?</span></p><textarea id="q31"></textarea></div>
+    <div class="block colab no-print">
+      <div class="num">3.B</div><h3>ส่งไม้ต่อให้ Colab</h3>
+      <ol>
+        <li>กดปุ่มด้านล่าง เพื่อ copy คำตอบกลุ่ม 6 ข้อ<span class="en">Press the button below to copy the six group answers.</span></li>
+        <li>ไปที่ Colab → cell <strong>4.1</strong> → ลบของเดิมระหว่างบรรทัด <code># &gt;&gt;&gt; PASTE</code> กับ <code># &lt;&lt;&lt; END PASTE</code> แล้ววางบล็อกที่ copy ไว้<span class="en">Go to Colab → cell 4.1 → delete what is between the <code># &gt;&gt;&gt; PASTE</code> and <code># &lt;&lt;&lt; END PASTE</code> lines and paste the copied block there.</span></li>
+        <li>ยังไม่ต้องรัน — ไปต่อที่ Stage 4 บนหน้านี้ก่อน<span class="en">Do not run it yet — continue to Stage 4 on this page first.</span></li>
+      </ol>
+      <div class="actions"><button type="button" class="primary" id="copyS3">Copy ค่า Stage 3 สำหรับ cell 4.1 · Copy Stage 3 block for cell 4.1</button></div>
+      <pre class="code" id="codeS3"></pre>
+    </div>
+  </section>
+
+  <!-- ============ STAGE 4 ============ -->
+  <section class="view" id="view-stage-4">
+    <h2>Stage 4 — สร้าง LLM จิ๋ว <span class="en-h">· Build a tiny LLM</span> <span class="eyebrow">· 40 นาที</span></h2>
+    <div class="flow"><span class="sheet">📄 อ่าน 4.0 · read 4.0</span><i>→</i><span class="colab">💻 รัน cell 4.1 – 4.6 · run cells 4.1–4.6</span><i>→</i><span class="sheet">📄 กรอก 4.7 + ตอบ Q4.1 – Q4.5 · fill 4.7, answer Q4.1–Q4.5</span><i>→</i><span>✋ TA</span></div>
+    <div class="block">
+      <div class="num">4.0</div><h3>เกิดอะไรขึ้นใน stage นี้</h3>
+      <p>เราจะสร้าง language model จากชื่อคลิป 1,282 ชื่อ — ไม่มี neural network มีแค่<strong>การนับ</strong> ว่าหลังคำนี้ คำไหนตามมากี่ครั้ง แล้วจะเห็นว่าพฤติกรรมทุกอย่างของ LLM ตัวใหญ่ (พูดคล่อง, มั่นใจทั้งที่ผิด, ปุ่ม temperature) โผล่มาในโมเดลจิ๋วของเราหมดแล้ว<span class="en">We build a language model from the 1,282 titles — no neural network, just <strong>counting</strong> which word follows which. Every behaviour of a big LLM (fluent output, confident mistakes, the temperature knob) already shows up in this tiny model.</span></p>
+      <div class="tablewrap"><table><thead><tr><th>คำศัพท์ · term</th><th>ความหมาย</th><th>meaning</th></tr></thead><tbody>
+        <tr><td>token</td><td>ชิ้นข้อความที่โมเดลเห็น (คำหรือส่วนของคำ)</td><td>a piece of text the model sees (a word or part of one)</td></tr>
+        <tr><td>vocabulary size</td><td>จำนวน token ที่ไม่ซ้ำกัน</td><td>number of different tokens</td></tr>
+        <tr><td>context</td><td>token ก่อนหน้าที่โมเดลใช้ทาย</td><td>the earlier token(s) used to guess the next one</td></tr>
+        <tr><td>bigram / trigram</td><td>มองย้อน 1 / 2 token</td><td>looks back 1 / 2 tokens</td></tr>
+        <tr><td><code>&lt;s&gt;</code> / <code>&lt;/s&gt;</code></td><td>จุดเริ่ม / จุดจบของชื่อ</td><td>start / end of a title</td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="block colab">
+      <div class="num">4.1 – 4.6</div><h3>ไปที่ Colab</h3>
+      <ol>
+        <li><strong>cell 4.1</strong> — ตรวจว่าวางค่าจาก 3.B แล้ว รัน<span class="en">Check the values from 3.B are pasted, then run.</span></li>
+        <li><strong>cell 4.2</strong> — ตัดชื่อคลิปเป็น token ดูว่าตัดตรงไหนดี ตรงไหนพลาด (ใช้ตอบ Q4.1)<span class="en">Cuts titles into tokens — see where it cuts well and where it fails (for Q4.1).</span></li>
+        <li><strong>cell 4.3</strong> — ตารางนับ: เทียบคำตอบกลุ่มกับความน่าจะเป็นจริง (ใช้ตอบ Q4.2)<span class="en">The count table: your group’s guesses vs the real probabilities (for Q4.2).</span></li>
+        <li><strong>cell 4.4</strong> — สร้างชื่อคลิปแบบ greedy และแบบสุ่มที่ temperature 0.5 / 1.0 / 2.0 (Q4.3)<span class="en">Generates titles greedily and by sampling at temperature 0.5 / 1.0 / 2.0 (Q4.3).</span></li>
+        <li><strong>cell 4.5</strong> — นับว่าชื่อที่สร้างเป็นชื่อจริงกี่ชื่อ “แต่งเอง” กี่ชื่อ แล้วลอง trigram (Q4.4)<span class="en">Counts how many generated titles are real and how many are invented, then tries a trigram (Q4.4).</span></li>
+        <li><strong>cell 4.6</strong> — โมเดลแยกสองช่อง สร้างชื่อสไตล์แต่ละช่อง และใช้จัดประเภทแทน tree — <strong>แก้ <code>my_title</code> เป็นชื่อที่กลุ่มคิดว่าจะหลอก LM classifier ได้ และแก้ <code>my_true_channel</code> เป็นช่องที่ชื่อนั้นเป็นของจริง ๆ</strong> (Q4.5) แล้วรัน cell 🔒 stamp จากนั้นอ่าน cell ⏸ ที่ปิดท้าย<span class="en">One model per channel: generate in each style and classify instead of the tree — <strong>change my_title to a title you think will fool the LM classifier, and my_true_channel to the channel it really belongs to</strong> (Q4.5), run the 🔒 stamp cell, then read the ⏸ cell at the end.</span></li>
+      </ol>
+      <div class="bring"><strong>เอากลับมากรอกที่ 4.7:</strong> คำตอบกลุ่มตรงกับตารางกี่ข้อ (x/6) · vocabulary size · bigram contexts · trigram contexts · LM classifier accuracy %<span class="en">Bring back to 4.7: how many group guesses matched (x/6), vocabulary size, bigram contexts, trigram contexts, LM classifier accuracy %.</span></div>
+    </div>
+    <div class="block">
+      <div class="num">4.7</div><h3>ตัวเลขจาก Colab</h3>
+      <p class="hint">พิมพ์ตัวเลขให้ตรงกับที่ Colab แสดง ครบทุกหลักทศนิยม (cell 5.1 จะเช็ก)<span class="en">Type the numbers exactly as Colab prints them, with all decimals (cell 5.1 checks them).</span></p>
+      <div class="row">
+        <label class="sm">คำตอบกลุ่มตรง · guesses matched (x/6) — cell 4.3 <input type="text" id="lmScore" placeholder="4/6"></label>
+        <label class="sm">Vocabulary size — cell 4.2 <input type="number" id="vocab"></label>
+        <label class="sm">Bigram contexts — cell 4.5 <input type="number" id="bigramCtx"></label>
+        <label class="sm">Trigram contexts — cell 4.5 <input type="number" id="trigramCtx"></label>
+        <label class="sm">LM classifier accuracy % — cell 4.6 <input type="number" step="0.01" id="lmAcc"></label>
+      </div>
+    </div>
+    <div class="block"><div class="num">Q4.1</div><h3>Tokens</h3><p class="hint">หาชื่อคลิป 1 ชื่อที่ tokenizer ตัดคำผิด การตัดผิดทำให้โมเดลทายแย่ลงได้อย่างไร? (LLM จริงก็มีปัญหานี้: มันเห็น “ชิ้นส่วน” ไม่ใช่คำ)<span class="en">Find one title the tokenizer cut wrongly. How could a bad cut make the model’s predictions worse? (Real LLMs have the same problem: they see “pieces”, not words.)</span></p><textarea id="q41"></textarea></div>
+    <div class="block"><div class="num">Q4.2</div><h3>แหลม vs แบน <span class="en-h">· Peaked vs flat</span></h3><p class="hint">คำก่อนหน้าคำไหนมีตารางที่ <em>แหลม</em> (คำเดียวนำโด่ง) และข้อไหน <em>แบน</em> (หลายคำ % ใกล้กัน)? แบบไหนที่คำทำนายของโมเดลน่าเชื่อถือ? กลุ่มชนะตารางข้อไหน แพ้ข้อไหน?<span class="en">Which previous word had a <em>peaked</em> table (one word far ahead) and which was <em>flat</em> (many words with similar %)? For which kind is the model’s prediction trustworthy? Where did the group beat the table, and where did it lose?</span></p><textarea id="q42"></textarea></div>
+    <div class="block"><div class="num">Q4.3</div><h3>Temperature</h3><p class="hint">temperature 0.5 กับ 2.0 ต่างกันอย่างไร? งานสรุปเอกสารกฎหมายควรใช้ค่าไหน งาน brainstorm ไอเดียคลิปควรใช้ค่าไหน? ทำไม greedy ถึงได้ชื่อเดิมทุกครั้งที่รัน?<span class="en">What changes between temperature 0.5 and 2.0? Which would you use to summarise a legal document, and which to brainstorm video ideas? Why does greedy generation give the same title every time you run it?</span></p><textarea id="q43"></textarea></div>
+    <div class="block"><div class="num">Q4.4</div><h3>Hallucination</h3><p class="hint">ชื่อที่โมเดล “แต่งเอง” คือ hallucination ของมัน: ลำดับคำที่น่าจะเป็น แต่ไม่มีคลิปนั้นอยู่จริง LLM ที่แต่งแหล่งอ้างอิง วันที่ หรือตัวเลขขึ้นมา กำลังทำสิ่งเดียวกันในแง่ไหน? trigram สร้างชื่อ “จริง” ได้มากขึ้นมาก ใช้ผลจาก cell ที่นับ context ที่เจอแค่ครั้งเดียว ตัดสินว่ามันฉลาดขึ้น หรือแค่ลอกชื่อเดิม? การมองย้อนหลังไกลขึ้นต้องแลกกับอะไร?<span class="en">The invented titles are the model’s hallucinations: likely word sequences for videos that do not exist. In what sense is an LLM that invents a reference, a date or a number doing the same thing? The trigram made far more “real” titles. Using the cell that counts contexts seen only once, decide whether it got smarter or started copying. What does looking further back cost?</span></p><textarea id="q44"></textarea></div>
+    <div class="block"><div class="num">Q4.5</div><h3>กลับมาที่ classification <span class="en-h">· Back to classification</span></h3><p class="hint">ก่อนดูตัวเลข ทายก่อนว่าอันไหนจะชนะกับคลิปปี 2023+: tree (ตัวเลข 5 ตัว + keywords ไม่กี่คำ) หรือ language model (ใช้ทุกคำ)? แล้วดูผลและอธิบายว่าทำไมเป็นอย่างนั้น แต่งชื่อคลิป 1 ชื่อที่หลอก LM classifier ได้ (cell 4.6)<span class="en">Before you look at the numbers, predict which will win on 2023+ videos: the tree (5 numbers + a few keywords) or the language models (every word). Then check and explain the result. Write one title that fools the LM classifier (cell 4.6).</span></p><textarea id="q45"></textarea>
+      <div class="note">✋ เรียก TA — ให้ดูชื่อที่โมเดลแต่งเอง 1 ชื่อ แล้วช่วยกันอธิบายว่าทำไมโมเดลถึงสร้างมันขึ้นมา TA เซ็นในตาราง 6.4 (แท็บ 6 Decide ล่างสุด)<span class="en">✋ Call a TA: show one invented title and explain together why the model produced it. The TA initials table 6.4 (tab 6 Decide, at the bottom).</span></div></div>
+  </section>
+
+  <!-- ============ STAGE 5 ============ -->
+  <section class="view" id="view-stage-5">
+    <h2>Stage 5 — ถาม LLM ตัวจริง <span class="en-h">· Ask a real LLM</span> <span class="eyebrow">· 25 นาที</span></h2>
+    <div class="flow"><span class="sheet">📄 อ่าน 5.0 · read 5.0</span><i>→</i><span class="colab">💻 cell 5.1 – 5.3 + LLM ในอีกแท็บ · cells 5.1–5.3 + an LLM in another tab</span><i>→</i><span class="sheet">📄 กรอก 5.4 + ตอบ Q5.1 – Q5.2 · fill 5.4, answer Q5.1–Q5.2</span><i>→</i><span>✋ TA ตรวจตอน Stage 6 · TA checks in Stage 6</span></div>
+    <div class="block">
+      <div class="num">5.0</div><h3>เกิดอะไรขึ้นใน stage นี้</h3>
+      <p>LLM ตัวจริงคือโมเดล Stage 4 ที่อัปเกรด 3 อย่าง: มองย้อนหลังได้หลายพัน token, ใช้ neural network แทนตารางนับ, และ train ด้วยข้อความหลายล้านล้าน token — แต่พฤติกรรมเหมือนเดิม: สร้างคำต่อไปที่<em>น่าจะเป็น</em>ที่สุด เรารู้ข้อมูลจริง จึงตัดสินได้ว่ามันตอบถูกไหม ใช้ LLM ตัวไหนก็ได้ (ChatGPT, Gemini, Claude ฯลฯ)<span class="en">A real LLM is your Stage 4 model with three upgrades: it looks back thousands of tokens, uses a neural network instead of a count table, and is trained on trillions of tokens — but the behaviour is the same: it produces the most <em>plausible</em> next word. You know the real data, so you can judge whether it is right. Use any LLM (ChatGPT, Gemini, Claude, …).</span></p>
+      <p class="hint"><strong>สูตร prompt:</strong> [Role] ให้มันเป็นใคร · [Task + format] ให้ทำอะไร รูปแบบไหน · [Context] ต้องรู้อะไรเกี่ยวกับข้อมูลเรา · [Reasoning] “think step by step” · [Iterate] “สั้นลง”, “ใช้การเปรียบเทียบ”<span class="en">Prompt recipe: [Role] who it should be · [Task + format] what to produce, in what shape · [Context] what it must know about our data · [Reasoning] “think step by step” · [Iterate] “shorter”, “use an analogy”.</span></p>
+    </div>
+    <div class="block colab">
+      <div class="num">5.1 – 5.3</div><h3>ไปที่ Colab (เปิด LLM ในอีกแท็บ) <span class="en-h">· Go to Colab (open an LLM in another tab)</span></h3>
+      <ol>
+        <li><strong>cell 5.1</strong> — 🔒 พิมพ์ test accuracy (2.6) และ LM accuracy (4.7) <em>จากหน้านี้</em> ให้ตรงกับที่ Colab บันทึกไว้<span class="en">🔒 Type the test accuracy (2.6) and LM accuracy (4.7) from this page; they must match what Colab recorded.</span></li>
+        <li><strong>cell 5.2 — Task A:</strong> อัปโหลด <code>tree.png</code> (หรือ <code>tree.svg</code> ถ้า LLM รับได้) ให้ LLM แล้วขอให้อธิบายต้นไม้ของเราให้เพื่อนที่ไม่เคยเรียน ML ฟัง ปรับ prompt อย่างน้อย 3 รอบ บันทึกทุกรอบใน <code>prompt_log_A</code> (คะแนนรอบสุดท้ายต้องดีกว่ารอบแรก)<span class="en">Task A: upload tree.png (or tree.svg if your LLM accepts it) to the LLM and ask it to explain our tree to a friend who has never studied ML. Improve the prompt at least 3 times and log every attempt in prompt_log_A (the last score must beat the first).</span></li>
+        <li><strong>cell 5.3 — Task B:</strong> ถาม LLM 2 ข้อนี้: (1) 9arm โพสต์กี่คลิปในปี 2024? (2) FAROSE โพสต์บ่อยที่สุดตอนกี่โมง? ดูว่ามัน<em>ยอมรับว่าไม่รู้</em> หรือ<em>แต่งตัวเลข</em> จากนั้นอัปโหลด <code>farose_9arm.csv</code> แล้วถามซ้ำ cell จะคำนวณคำตอบจริงของ 2 ข้อนี้ให้ (ถ้าถามข้ออื่น ให้แก้โค้ด pandas เอง) แล้วบันทึกใน <code>fact_check</code><span class="en">Task B: ask the LLM these two questions: (1) how many videos did 9arm post in 2024? (2) at what hour does FAROSE post most often? Does it admit it cannot know, or invent a number? Upload farose_9arm.csv and ask again. The cell computes the true answers for these two questions (for different questions, edit the pandas code yourself) — log them in fact_check.</span></li>
+        <li>รัน cell 🔒 stamp ปิดท้าย — มันจะพิมพ์ <strong>สรุปสำหรับ TA</strong> เปิดทิ้งไว้ให้ TA ดูใน Stage 6<span class="en">Run the final 🔒 stamp cell — it prints a summary for the TA. Leave it open for the Stage 6 check.</span></li>
+      </ol>
+      <div class="bring"><strong>เอากลับมา:</strong> ชื่อ LLM ที่ใช้ และสิ่งที่สังเกตได้ (สำหรับ Q5.1 – Q5.2)<span class="en">Bring back: which LLM you used and what you observed (for Q5.1–Q5.2).</span></div>
+    </div>
+    <div class="block">
+      <div class="num">5.4</div><h3>LLM ที่ใช้ และผลตรวจข้อเท็จจริง <span class="en-h">· LLM used and fact check</span></h3>
+      <div class="row"><label>ชื่อ LLM (ฟรี/เสียเงิน) · LLM name (free/paid) <input type="text" id="llmUsed" placeholder="Gemini (เว็บฟรี), ChatGPT"></label></div>
+      <div class="row" style="margin-top:10px"><label>prompt ที่ดีที่สุดใน Task A · best prompt in Task A <textarea id="bestPrompt" style="min-height:56px"></textarea></label></div>
+      <p class="hint" style="margin-top:10px">Task B — ผลตรวจข้อเท็จจริง 2 ข้อ (คำตอบจริงดูจาก cell 5.3)<span class="en">Task B — the two fact checks (the true answers are printed by cell 5.3).</span></p>
+      <div class="tablewrap"><table class="ta"><thead><tr><th>#</th><th>คำถาม · Question</th><th>LLM (ไม่มีไฟล์ · no file)</th><th>LLM (มีไฟล์ · with file)</th><th>คำตอบจริง · Truth</th><th>ถูก/ผิด · Verdict</th></tr></thead><tbody>
+        <tr><td>1</td><td><textarea id="fc1q" style="min-height:46px"></textarea></td><td><textarea id="fc1n" style="min-height:46px"></textarea></td><td><textarea id="fc1f" style="min-height:46px"></textarea></td><td><textarea id="fc1t" style="min-height:46px"></textarea></td><td><textarea id="fc1v" style="min-height:46px"></textarea></td></tr>
+        <tr><td>2</td><td><textarea id="fc2q" style="min-height:46px"></textarea></td><td><textarea id="fc2n" style="min-height:46px"></textarea></td><td><textarea id="fc2f" style="min-height:46px"></textarea></td><td><textarea id="fc2t" style="min-height:46px"></textarea></td><td><textarea id="fc2v" style="min-height:46px"></textarea></td></tr>
+      </tbody></table></div>
+    </div>
+    <div class="block"><div class="num">Q5.1</div><h3>ให้ LLM อธิบายต้นไม้ของเรา <span class="en-h">· Making the LLM explain our tree</span></h3><p class="hint">การแก้ prompt ข้อไหนทำให้คำตอบดีขึ้นมากที่สุด? LLM พูดอะไร<em>ผิด</em>เกี่ยวกับต้นไม้ของเราบ้าง (threshold, ชื่อ feature, ความหมายของ <code>class_weight='balanced'</code>)? รู้ได้อย่างไรว่าผิด?<span class="en">Which single change to the prompt improved the answer most? Did the LLM say anything <em>wrong</em> about our tree (a threshold, a feature name, what class_weight='balanced' means)? How did you know it was wrong?</span></p><textarea id="q51"></textarea></div>
+    <div class="block"><div class="num">Q5.2</div><h3>เชื่อได้ แต่ต้องตรวจ <span class="en-h">· Trust, but verify</span></h3><p class="hint">LLM ฟังดูมั่นใจเท่ากันไหมตอนตอบถูกกับตอนตอบผิด? ใช้สิ่งที่เห็นใน cell 4.5 อธิบายใน 2 ประโยคว่า<em>ทำไม</em> language model ถึงพูดตัวเลขผิดได้อย่างคล่องแคล่ว เรื่องแบบไหนต้องตรวจเสมอ และแบบไหนพอจะเชื่อได้?<span class="en">Did the LLM sound equally confident when right and when wrong? Using what you saw in cell 4.5, explain in two sentences <em>why</em> a language model can state a wrong number fluently. What must always be checked, and what is reasonable to trust?</span></p><textarea id="q52"></textarea></div>
+  </section>
+
+  <!-- ============ STAGE 6 ============ -->
+  <section class="view" id="view-stage-6">
+    <h2>Stage 6 — จะ deploy หรือไม่? <span class="en-h">· Deploy or not?</span> <span class="eyebrow">· 20 นาที · หน้านี้ + TA / this page + TA</span></h2>
+    <div class="flow"><span class="sheet">📄 ทั้ง stage ทำบนหน้านี้ (ใช้ LLM ในอีกแท็บ) · all on this page, LLM in another tab</span><i>→</i><span>✋ TA เซ็น · TA initials</span><i>→</i><span class="sheet">📄 Print &amp; ส่งงาน · print &amp; submit</span></div>
+    <div class="block">
+      <div class="num">6.0</div><h3>สถานการณ์ <span class="en-h">· Scenario</span></h3>
+      <p>บริษัทสื่อแห่งหนึ่งต้องการ deploy โมเดลแบบเดียวกับของเรา เพื่อติดป้ายคลิปใหม่อัตโนมัติและเลือกโฆษณาที่จะแสดง โดย<strong>ไม่มีคนตรวจ</strong> โมเดลของเขา train ด้วยคลิป 1,000 คลิปจากปี 2020–2022 ได้ <strong>test accuracy 82 %</strong> และอยาก deploy ทันที<span class="en">A media company wants to deploy a model like ours to label new videos automatically and choose which ads to show, with <strong>no human review</strong>. Their model was trained on 1,000 videos from 2020–2022 and scores <strong>82 % test accuracy</strong>; they want to deploy immediately.</span></p>
+      <p class="hint">ถาม LLM ด้วย chain-of-thought prompt: <em>“Think step by step. First identify the risks of deploying this model, then the ethical considerations, then the steps needed before it is safe to deploy. At least 3 points in each.”</em><span class="en">Ask an LLM with the chain-of-thought prompt in quotes above (copy it as is).</span></p>
+      <label style="display:block">prompt ของเรา · our prompt <textarea class="short" id="cotPrompt"></textarea></label>
+    </div>
+    <div class="block">
+      <div class="num">6.1</div><h3>สิ่งที่ LLM ตอบ เทียบกับโมเดล<em>ของเรา</em> <span class="en-h">· What the LLM said, mapped to <em>our</em> model</span></h3>
+      <p class="hint">สรุปแต่ละหมวดด้วยคำพูดของเราเอง แล้วบอกว่าข้อไหนเกิดขึ้นกับโมเดลของเราจริง ๆ วันนี้ (ใช้ตัวเลขจาก 2.6 และ 4.7)<span class="en">Summarise each category in your own words, then say which points actually happened to our model today (use the numbers from 2.6 and 4.7).</span></p>
+      <div class="grid2">
+        <label>Risks <textarea id="risks"></textarea></label>
+        <label>Ethical considerations <textarea id="ethics"></textarea></label>
+        <label>ขั้นตอนที่ต้องทำก่อน deploy · Steps before deployment <textarea id="steps"></textarea></label>
+        <label>ข้อไหนเกิดกับโมเดลของเราวันนี้? ระบุให้ชัด · Which of these applied to our model today? Be specific <textarea id="applied"></textarea></label>
+      </div>
+    </div>
+    <div class="block">
+      <div class="num">6.2</div><h3>คำตัดสินของกลุ่ม <span class="en-h">· Group verdict</span></h3>
+      <div class="verdict">
+        <label><input type="radio" name="verdict" value="deploy"> Deploy</label>
+        <label><input type="radio" name="verdict" value="conditions"> Deploy แบบมีเงื่อนไข · with conditions</label>
+        <label><input type="radio" name="verdict" value="no"> ไม่ deploy · Do not deploy</label>
+      </div>
+      <label style="display:block;margin-top:10px">5 บรรทัด พร้อมหลักฐาน 1 อย่างจากวันนี้ที่ทำให้ตัดสินแบบนี้ · Five lines, with one piece of evidence from today that decides it <textarea id="verdictText"></textarea><span class="count" id="cntV">0 บรรทัด</span></label>
+    </div>
+    <div class="block">
+      <div class="num">6.3</div><h3>ด้วยคำพูดของเราเอง <span class="en-h">· In our own words</span></h3>
+      <p class="hint">เขียน stage ละ 1 ประโยค แบบที่จะใช้อธิบายให้เพื่อนฟัง ตกลงกันทั้งกลุ่ม<span class="en">One sentence per stage, the way you would explain it to a friend. Agree on each sentence together.</span></p>
+      <div class="grid2">
+        <label>Stage 1–2 — decision tree: ในหนึ่งประโยค… / in one sentence… <textarea class="short" id="ex1"></textarea></label>
+        <label>Stage 3–4 — language model จิ๋ว · tiny LM: ในหนึ่งประโยค… <textarea class="short" id="ex2"></textarea></label>
+        <label>Stage 5 — LLM ตัวจริง · real LLMs: ในหนึ่งประโยค… <textarea class="short" id="ex3"></textarea></label>
+        <label>Stage 6 — คำตัดสินของเรา · our verdict: ในหนึ่งประโยค… <textarea class="short" id="ex4"></textarea></label>
+      </div>
+    </div>
+    <div class="block">
+      <div class="num">+0.3</div><h3>Outstanding — ไม่บังคับ <span class="en-h">· optional</span></h3>
+      <p class="hint">ทำตามโจทย์ Outstanding ท้าย notebook (ใช้ <code>description</code> ด้วย) แล้วกรอกผลที่นี่<span class="en">Do the Outstanding task at the end of the notebook (also using <code>description</code>), then fill in the results here.</span></p>
+      <div class="row"><label>Hallucination rate ใหม่ (จริง / แต่งเอง จาก 200) · new hallucination rate (real / invented of 200) <input type="text" id="outHall" placeholder="12 / 188"></label></div>
+      <div class="row" style="margin-top:10px"><label>ชื่อที่สร้าง 3 ชื่อ · 3 generated titles <textarea id="outTitles" style="min-height:70px"></textarea></label></div>
+      <div class="row" style="margin-top:10px"><label>3 ประโยค: อะไรดีขึ้น อะไรแย่ลง ต้องมีอะไรเพิ่มถึงจะเก่งเท่า LLM จริง · 3 sentences: what improved, what got worse, what you would need to match a real LLM <textarea id="outSent"></textarea></label></div>
+    </div>
+    <div class="block">
+      <div class="num">6.4</div><h3>TA ตรวจ <span class="en-h">· TA check</span></h3>
+      <p class="hint">เรียก TA โดยเปิด Colab ไว้ที่สรุปท้าย Stage 5 TA จะเซ็นชื่อย่อในแต่ละ stage ที่ตรวจแล้ว จากนั้นไปที่ <strong>Print &amp; ส่งงาน</strong><span class="en">Call a TA with Colab open at the Stage 5 summary. The TA writes their initials for each stage checked. Then go to Print &amp; submit.</span></p>
+      <div class="tablewrap"><table class="ta"><thead><tr><th>ตรวจ · Checked</th><th>ชื่อย่อ TA · TA initials</th><th>เวลา · Time</th><th>หมายเหตุ · Note</th></tr></thead><tbody>
+        <tr><td>Stage 2 — tree</td><td><input type="text" id="ta2"></td><td><input type="text" id="ta2t" placeholder="14:05"></td><td><input type="text" id="ta2n"></td></tr>
+        <tr><td>Stage 4 — LLM จิ๋ว · tiny LLM</td><td><input type="text" id="ta4"></td><td><input type="text" id="ta4t"></td><td><input type="text" id="ta4n"></td></tr>
+        <tr><td>Stage 5–6 — LLM + คำตัดสิน · verdict</td><td><input type="text" id="ta6"></td><td><input type="text" id="ta6t"></td><td><input type="text" id="ta6n"></td></tr>
+      </tbody></table></div>
+      <div class="note">ก่อนเรียก TA ถามตัวเองเงียบ ๆ ทั้งกลุ่ม: เราเข้าใจไหมว่ามันทำอะไรและทำไม? เราบอกได้ไหมว่ามันอาจผิดตรงไหน? เราอธิบายเรื่องนี้ได้ไหมโดยไม่ต้องพึ่ง LLM?<span class="en">Before you call: Do we understand what it did and why? Can we spot where it might be wrong? Could we explain this without the LLM?</span></div>
+    </div>
+  </section>
+
+  <!-- ============ PRINT ============ -->
+  <section class="view" id="view-print">
+    <h2>Print &amp; ส่งงาน <span class="en-h">· Print &amp; submit</span></h2>
+    <p class="lede">คำตอบอยู่ในเบราว์เซอร์นี้เท่านั้น ให้ print หน้านี้เป็น PDF แล้วอัปโหลดใน myCourseVille — กลุ่มละ 1 ไฟล์ ก่อนออกจากห้อง<span class="en">Your answers exist only in this browser. Print this page to PDF and upload it to myCourseVille — one file per group, before you leave.</span></p>
+    <div class="block">
+      <div class="num">P.1</div><h3>ตรวจความครบถ้วน <span class="en-h">· Completeness check</span></h3>
+      <div id="checklist"></div>
+    </div>
+    <div class="block">
+      <div class="num">P.2</div><h3>Print เป็น PDF <span class="en-h">· Print to PDF</span></h3>
+      <p class="hint">กดปุ่ม (หรือ Ctrl+P / Cmd+P) ในหน้าต่าง print เลือก <strong>Save as PDF</strong> และเปิด <em>Background graphics</em> ถ้าการ์ดดูว่าง ทุก stage จะพิมพ์ตามลำดับพร้อมชื่อกลุ่มด้านบน ตั้งชื่อไฟล์ <code>Activity11_Group&lt;เลขกลุ่ม&gt;.pdf</code><span class="en">Press the button (or Ctrl+P / Cmd+P). In the print dialog choose Save as PDF and turn on Background graphics if the cards look empty. Every stage prints in order with the group name on top. Name the file Activity11_Group&lt;no&gt;.pdf.</span></p>
+      <div class="actions"><button type="button" class="primary" id="printBtn">Print / Save as PDF</button><button type="button" id="copyAll">Copy คำตอบทั้งหมดเป็นข้อความ (สำรอง) · Copy all answers as text (backup)</button></div>
+      <div class="note" id="printNote" hidden>ถ้าไม่มีอะไรเกิดขึ้น แสดงว่าหน้านี้เปิดอยู่ในแอปที่ไม่อนุญาตให้ print ให้เปิดหน้านี้ในเบราว์เซอร์ปกติแล้วกด Ctrl+P<span class="en">If nothing happened, this page is open inside an app that blocks printing. Open it in a normal browser tab and press Ctrl+P.</span></div>
+    </div>
+    <div class="block">
+      <div class="num">P.3</div><h3>เริ่มใหม่ <span class="en-h">· Start over</span></h3>
+      <p class="hint">ล้างคำตอบทั้งหมดในเบราว์เซอร์นี้ ใช้เฉพาะเมื่อกลุ่มใหม่ใช้เครื่องเดิม<span class="en">Clears every answer in this browser. Only for a new group using the same laptop.</span></p>
+      <div class="actions"><button type="button" id="resetBtn">ล้างคำตอบทั้งหมด · Clear this sheet</button></div>
+      <div class="dialog" id="resetDialog" hidden>ล้างคำตอบทุกข้อจริงหรือไม่? · Really clear every answer? <div class="actions"><button type="button" class="primary" id="resetYes">ใช่ ล้างเลย · Yes, clear</button><button type="button" id="resetNo">เก็บไว้ · Keep</button></div></div>
+    </div>
+  </section>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  'use strict';
+  const CARDS = [{"title": "เที่ยวทิพย์ EP12 อาหารฝรั่งทำโดยคนจีน เรียกว่าอะไร?", "hour": 18, "len": 51, "min": 24, "day": "จ"}, {"title": "ทำไม EPIC ต้องฟ้อง APPLE ?", "hour": 12, "len": 26, "min": 9, "day": "อ"}, {"title": "PYMK EP7 สงครามกรุงทรอยของโฮเมอร์ กวีเอก", "hour": 20, "len": 40, "min": 60, "day": "พ"}, {"title": "ช่างเชื่อม EP20 เธอเกิดจากน้ำลายของเทพ ไม่เหนียวหรอ?", "hour": 18, "len": 52, "min": 29, "day": "จ"}, {"title": "Vlog #45 : ทำไมใช้ mac?", "hour": 11, "len": 23, "min": 8, "day": "พ"}, {"title": "ฟังยากมาก สำเนียงออสซี่ — ฟังให้ [Chris Hemsworth] Farose FungHai", "hour": 19, "len": 65, "min": 2, "day": "พ"}, {"title": "ChatGPT คือ AI ที่โลกยังไม่พร้อมจะรับมือ", "hour": 9, "len": 40, "min": 21, "day": "พ"}, {"title": "หนทางสู่การไม่ต้องใช้ Password อยู่ไม่ไกล", "hour": 17, "len": 41, "min": 8, "day": "ศ"}, {"title": "บ้ า น ข อ ง เ ร า", "hour": 9, "len": 18, "min": 45, "day": "ส", "note": "ชื่อจริงมีเว้นวรรคระหว่างตัวอักษร · the real title has spaces between the letters"}, {"title": "Vlog #10 : บุก Cisco HQ (Silicon Valley Series)", "hour": 9, "len": 47, "min": 11, "day": "อา"}, {"title": "ไกลบ้าน SP ด้วยรักและคิดถึงตลอดไป", "hour": 21, "len": 33, "min": 10, "day": "อ"}, {"title": "ไกลบ้าน EP60 ฮาวายในกูเกิ้ลไม่เป็นแบบนี้!", "hour": 18, "len": 41, "min": 27, "day": "พฤ"}];
+  const TRAIN = [
+    {"title": "ไกลบ้าน EP27 เมืองน่ารัก ที่คนไทยไม่ค่อยรู้จัก (Siena, Italy)", "hour": 18, "len": 61, "min": 22, "day": "พ", "ch": "F"},
+    {"title": "Vlog #56 : เปิดฝา CPU (Delidding)", "hour": 9, "len": 33, "min": 9, "day": "ส", "ch": "N"},
+    {"title": "เที่ยวทิพย์ EP1 จอร์เจียเป็นเอเชียหรือยุโรป?", "hour": 19, "len": 44, "min": 15, "day": "อา", "ch": "F"},
+    {"title": "Bug ราคา 30 ล้าน", "hour": 9, "len": 16, "min": 5, "day": "อา", "ch": "N"},
+    {"title": "ช่างเชื่อม EP27 ใครทำให้โลกมืดคะ?", "hour": 18, "len": 33, "min": 26, "day": "จ", "ch": "F"},
+    {"title": "[รีวิว] Skullcandy Crusher ANC", "hour": 12, "len": 30, "min": 8, "day": "พ", "ch": "N"},
+    {"title": "PYMK EP26 เมื่อรัฐกีดกัน จึงกำเนิดอิมเพรสชันนิสต์ ศิลปะแหวกขนบที่กรุยทางสู่โมเดิร์นอาร์ท", "hour": 18, "len": 88, "min": 56, "day": "พ", "ch": "F"},
+    {"title": "หลงทางเมืองหนาวในยุค GPS และ Tesla", "hour": 13, "len": 34, "min": 18, "day": "พ", "ch": "N"}];
+  const KEY = (() => { try { return atob('TVVNTVVNVVVVVU1N').split('').map(c => String.fromCharCode(c.charCodeAt(0) - 7)).join(''); } catch (e) { return ''; } })();
+  const LABEL = { F: 'FAROSE', N: '9arm' };
+  const PREFIXES = [['ช่างเชื่อม', '… ช่างเชื่อม [ ? ]'], ['ไกล', '… ไกล [ ? ]'], ['เที่ยว', '… เที่ยว [ ? ]'], ['ทำไม', '… ทำไม [ ? ]'], ['ของ', '… ของ [ ? ]'], ['AI', '… AI [ ? ]']];
+  const STORE = 'activity11-sheet-v2';
+  const TEXT_FIELDS = ['groupNo', 'm1', 'm2', 'm3', 'm4', 'kwF', 'kw9', 'trainAcc', 'testAcc', 'randAcc', 'topFeat', 'wordsKept', 'fooledTitle', 'q21', 'q22', 'q23', 'q24', 'q31',
+    'lmScore', 'vocab', 'bigramCtx', 'trigramCtx', 'lmAcc', 'q41', 'q42', 'q43', 'q44', 'q45', 'llmUsed', 'q51', 'q52', 'cotPrompt', 'risks', 'ethics', 'steps', 'applied', 'verdictText',
+    'ex1', 'ex2', 'ex3', 'ex4', 'ta2', 'ta2t', 'ta2n', 'ta4', 'ta4t', 'ta4n', 'ta6', 'ta6t', 'ta6n', 'bestPrompt', 'fc1q', 'fc1n', 'fc1f', 'fc1t', 'fc1v', 'fc2q', 'fc2n', 'fc2f', 'fc2t', 'fc2v', 'outHall', 'outTitles', 'outSent'];
+
+  const $ = id => document.getElementById(id);
+  let S = { fields: {}, guesses: {}, group: {}, rules: ['', '', ''], revealed: false, verdict: '', currentMember: 0, lm: {} };
+  try { const raw = localStorage.getItem(STORE); if (raw) S = Object.assign(S, JSON.parse(raw)); } catch (e) {}
+  let saveTimer = null;
+  function save() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      try { localStorage.setItem(STORE, JSON.stringify(S)); $('saveStatus').textContent = 'บันทึกในเบราว์เซอร์นี้แล้ว · ' + new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); }
+      catch (e) { $('saveStatus').textContent = 'บันทึกไม่ได้ — print ก่อนปิดหน้า'; }
+      refreshMeta();
+    }, 250);
+  }
+  function toast(msg) { const t = $('toast'); t.textContent = msg; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 1800); }
+  function copyText(text, okMsg) {
+    const done = () => toast(okMsg || 'คัดลอกแล้ว');
+    const fallback = () => { const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); done(); } catch (e) { toast('เลือกข้อความแล้วคัดลอกเอง'); } ta.remove(); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback); else fallback();
+  }
+  const members = () => ['m1', 'm2', 'm3', 'm4'].map(k => (S.fields[k] || '').trim()).filter(Boolean);
+  const first = s => (s || '').split(' ')[0] || s;
+  const pyStr = s => "'" + String(s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/\n/g, '\\n') + "'";
+  const pyList = arr => '[' + arr.map(pyStr).join(', ') + ']';
+  const splitKw = s => (s || '').split(/[,，、\n]/).map(x => x.trim()).filter(Boolean);
+  const words = s => (s || '').trim().split(/\s+/).filter(Boolean).length;
+  const chars = s => (s || '').replace(/\s+/g, '').length;
+
+  function attachMirror(el) {
+    if (el.dataset.mirrored) return; el.dataset.mirrored = '1';
+    const pv = document.createElement('div'); pv.className = 'pv'; el.insertAdjacentElement('afterend', pv);
+    const sync = () => { pv.textContent = el.value; }; el.addEventListener('input', sync); sync();
+  }
+  TEXT_FIELDS.forEach(id => {
+    const el = $(id); if (!el) return;
+    if (S.fields[id] !== undefined) el.value = S.fields[id];
+    attachMirror(el);
+    el.addEventListener('input', () => { S.fields[id] = el.value; onFieldChange(id); save(); });
+  });
+  document.querySelectorAll('input[name=verdict]').forEach(r => { r.checked = S.verdict === r.value; r.addEventListener('change', () => { S.verdict = r.value; save(); }); });
+  function onFieldChange(id) {
+    if (['m1', 'm2', 'm3', 'm4', 'groupNo'].includes(id)) { renderMembers(); renderLM(); }
+    if (id === 'verdictText') $('cntV').textContent = (S.fields.verdictText || '').split('\n').filter(x => x.trim()).length + ' บรรทัด';
+  }
+
+  // ---- cards
+  function metaHtml(c) { return '<div class="meta"><span>' + String(c.hour).padStart(2, '0') + ':00</span><span>' + c.len + ' chars</span><span>' + c.min + ' min</span><span>' + c.day + '</span></div>'; }
+  function cardEl(i, c, selected, onPick, reveal) {
+    const d = document.createElement('div'); d.className = 'card';
+    d.innerHTML = '<span class="idx">#' + (i + 1) + '</span><div class="t"></div>' + metaHtml(c);
+    d.querySelector('.t').textContent = c.title;
+    if (c.note) { const nt = document.createElement('div'); nt.className = 'hint'; nt.style.fontSize = '11px'; nt.textContent = c.note; d.querySelector('.t').insertAdjacentElement('afterend', nt); }
+    const seg = document.createElement('div'); seg.className = 'seg';
+    ['F', 'N'].forEach(v => { const b = document.createElement('button'); b.type = 'button'; b.textContent = LABEL[v]; b.className = selected === v ? 'on' : ''; b.addEventListener('click', () => onPick(v)); seg.appendChild(b); });
+    d.appendChild(seg);
+    const pick = document.createElement('span'); pick.className = 'pick'; pick.textContent = selected ? 'ป้ายของเรา / our label: ' + LABEL[selected] : 'ป้ายของเรา / our label: —'; d.appendChild(pick);
+    if (reveal && KEY.length === 12) {
+      const truth = KEY[i]; const t = document.createElement('div'); t.className = 'truth';
+      if (selected) { d.classList.add(selected === truth ? 'right' : 'wrong'); t.textContent = (selected === truth ? '✓ ' : '✗ ') + 'เฉลย / answer: ' + LABEL[truth]; }
+      else t.textContent = 'เฉลย / answer: ' + LABEL[truth];
+      d.appendChild(t);
+    }
+    return d;
+  }
+  function renderTrain() {
+    const box = $('cardsTrain'); box.innerHTML = '';
+    TRAIN.forEach(c => { const d = document.createElement('div'); d.className = 'card ' + (c.ch === 'F' ? 'train-f' : 'train-9'); d.innerHTML = '<span class="lab">' + LABEL[c.ch] + '</span><div class="t"></div>' + metaHtml(c); d.querySelector('.t').textContent = c.title; box.appendChild(d); });
+  }
+  function renderMembers() {
+    const box = $('memberPick'); box.innerHTML = ''; const m = members();
+    if (!m.length) { box.innerHTML = '<span class="hint">ใส่ชื่อสมาชิกในหน้า “เริ่มต้น” ก่อน · Add member names in Setup first</span>'; renderCardsA(); return; }
+    if (S.currentMember >= m.length) S.currentMember = 0;
+    m.forEach((name, i) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = first(name); b.className = i === S.currentMember ? 'on' : ''; b.addEventListener('click', () => { S.currentMember = i; save(); renderMembers(); }); box.appendChild(b); });
+    renderCardsA();
+  }
+  function renderCardsA() {
+    const box = $('cardsA'); box.innerHTML = ''; const m = members(); if (!m.length) return;
+    const who = String(S.currentMember); S.guesses[who] = S.guesses[who] || {};
+    CARDS.forEach((c, i) => box.appendChild(cardEl(i, c, S.guesses[who][i], v => { S.guesses[who][i] = v; save(); renderCardsA(); }, S.revealed)));
+  }
+  function renderCardsC() {
+    const box = $('cardsC'); box.innerHTML = '';
+    CARDS.forEach((c, i) => box.appendChild(cardEl(i, c, S.group[i], v => { S.group[i] = v; save(); renderCardsC(); }, S.revealed)));
+    $('hideBtn').hidden = !S.revealed; $('scoreBtn').textContent = S.revealed ? 'ตรวจอีกครั้ง' : 'ตรวจคะแนน';
+    renderScore();
+  }
+  function accuracy(map) { let n = 0, ok = 0; CARDS.forEach((c, i) => { if (map && map[i]) { n++; if (map[i] === KEY[i]) ok++; } }); return { n, ok, pct: n ? Math.round(100 * ok / n) : 0 }; }
+  const groupAccuracy = () => accuracy(S.group);
+  function renderScore() {
+    const out = $('scoreOut'); if (!S.revealed) { out.innerHTML = ''; return; }
+    const g = groupAccuracy(); const m = members();
+    let html = '<div class="tablewrap" style="margin-top:12px"><table><thead><tr><th>ใคร · who</th><th>ติดป้าย · labelled</th><th>ถูก · correct</th><th>Accuracy</th></tr></thead><tbody>';
+    m.forEach((name, i) => { const a = accuracy(S.guesses[String(i)]); html += '<tr><td>' + name.replace(/</g, '&lt;') + ' (ทายคนเดียว · alone)</td><td class="num">' + a.n + '/12</td><td class="num">' + a.ok + '</td><td class="num">' + a.pct + ' %</td></tr>'; });
+    html += '<tr><td><strong>กฎของกลุ่ม · group rules</strong></td><td class="num">' + g.n + '/12</td><td class="num">' + g.ok + '</td><td class="num"><strong>' + g.pct + ' %</strong></td></tr></tbody></table></div>';
+    html += '<div class="note ' + (g.n === 12 ? 'ok' : 'warn') + '">' + (g.n === 12 ? 'Human accuracy = <strong>' + g.pct + ' %</strong> — ตัวเลขนี้จะเข้า Colab เป็น <code>human_accuracy</code>' : 'ติดป้ายให้ครบ 12 ใบด้วยกฎก่อนเอาตัวเลขไปใช้') + ' ใบไหนที่กฎพลาด และกฎข้อไหนเป็นสาเหตุ?</div>';
+    out.innerHTML = html;
+  }
+  $('scoreBtn').addEventListener('click', () => { if (KEY.length !== 12) { toast('ไม่มีเฉลย'); return; } S.revealed = true; save(); renderCardsA(); renderCardsC(); });
+  $('hideBtn').addEventListener('click', () => { S.revealed = false; save(); renderCardsA(); renderCardsC(); });
+
+  // ---- rules
+  function renderRules() {
+    const box = $('rules'); box.innerHTML = '';
+    S.rules.forEach((r, i) => {
+      const row = document.createElement('div'); row.className = 'r';
+      const n = document.createElement('span'); n.textContent = 'R' + (i + 1);
+      const inp = document.createElement('input'); inp.type = 'text'; inp.id = 'rule' + i; inp.value = r; inp.placeholder = i === 0 ? 'ถ้าชื่อมีคำว่า EP → FAROSE' : 'ถ้า … → …';
+      inp.addEventListener('input', () => { S.rules[i] = inp.value; save(); });
+      row.appendChild(n); row.appendChild(inp); attachMirror(inp);
+      if (i >= 3) { const x = document.createElement('button'); x.type = 'button'; x.className = 'quiet'; x.textContent = '×'; x.title = 'ลบกฎ'; x.addEventListener('click', () => { S.rules.splice(i, 1); save(); renderRules(); }); row.appendChild(x); }
+      box.appendChild(row);
+    });
+  }
+  $('addRule').addEventListener('click', () => { if (S.rules.length >= 8) return; S.rules.push(''); save(); renderRules(); });
+
+  // ---- stage 3 table
+  function renderLM() {
+    const m = members(); const tb = $('lmTable').querySelector('tbody'); tb.innerHTML = '';
+    [1, 2, 3, 4].forEach(k => { const th = $('lmH' + k); th.textContent = m[k - 1] ? first(m[k - 1]) : 'สมาชิก ' + k + ' · Member ' + k; th.hidden = !m[k - 1] && k > 2; });
+    PREFIXES.forEach(([key, shown], r) => {
+      S.lm[key] = S.lm[key] || { mem: ['', '', '', ''], group: '' };
+      const tr = document.createElement('tr'); const td0 = document.createElement('td'); td0.innerHTML = '<span class="prefix"></span>'; td0.querySelector('.prefix').textContent = shown; tr.appendChild(td0);
+      [0, 1, 2, 3].forEach(k => {
+        const td = document.createElement('td'); td.hidden = !m[k] && k > 1;
+        const inp = document.createElement('input'); inp.type = 'text'; inp.id = 'lm' + r + 'm' + k; inp.value = S.lm[key].mem[k] || ''; inp.placeholder = '?';
+        inp.addEventListener('input', () => { S.lm[key].mem[k] = inp.value; save(); }); td.appendChild(inp); attachMirror(inp); tr.appendChild(td);
+      });
+      const tdg = document.createElement('td'); const g = document.createElement('input'); g.type = 'text'; g.id = 'lm' + r + 'g'; g.value = S.lm[key].group || ''; g.placeholder = 'กลุ่ม / group';
+      g.addEventListener('input', () => { S.lm[key].group = g.value; save(); }); tdg.appendChild(g); attachMirror(g); tr.appendChild(tdg);
+      tb.appendChild(tr);
+    });
+  }
+
+  // ---- code generation
+  function stage1Code() {
+    const g = groupAccuracy();
+    return ['human_accuracy = ' + (S.revealed && g.n === 12 ? g.pct : 0), '',
+      'human_rules = ' + pyList(S.rules.map(r => r.trim()).filter(Boolean)), '',
+      'keywords_farose = ' + pyList(splitKw(S.fields.kwF)),
+      'keywords_9arm   = ' + pyList(splitKw(S.fields.kw9))].join('\n');
+  }
+  function stage3Code() {
+    return ['human_next = {']
+      .concat(PREFIXES.map(([key]) => '    ' + pyStr(key) + ': ' + pyStr((S.lm[key] && S.lm[key].group || '').trim()) + ','))
+      .concat(['}']).join('\n');
+  }
+  $('copyS1').addEventListener('click', () => { const g1 = groupAccuracy(); if (!(S.revealed && g1.n === 12)) { toast('กด “ตรวจคะแนน” ใน 1.C ก่อน · Press Score in 1.C first'); return; } const c = stage1Code(); $('codeS1').textContent = c; copyText(c, 'คัดลอกแล้ว — วางใน cell 2.1'); });
+  $('copyS3').addEventListener('click', () => { const c = stage3Code(); $('codeS3').textContent = c; copyText(c, 'คัดลอกแล้ว — วางใน cell 4.1'); });
+
+  function allText() {
+    const f = S.fields; const lines = ['Activity 11 — Answer sheet', 'Group ' + (f.groupNo || ''), 'Members: ' + members().join('; '), ''];
+    const add = (k, v) => lines.push(k + ': ' + (v || '').toString().trim());
+    add('Human accuracy', S.revealed ? groupAccuracy().pct + '%' : ''); add('Rules', S.rules.filter(r => r.trim()).join(' | ')); add('Keywords FAROSE', f.kwF); add('Keywords 9arm', f.kw9);
+    ['trainAcc', 'testAcc', 'randAcc', 'topFeat', 'wordsKept', 'fooledTitle', 'q21', 'q22', 'q23', 'q24', 'q31'].forEach(k => add(k, f[k]));
+    PREFIXES.forEach(([key]) => add('next after ' + key, (S.lm[key] || {}).group));
+    ['lmScore', 'vocab', 'bigramCtx', 'trigramCtx', 'lmAcc', 'q41', 'q42', 'q43', 'q44', 'q45', 'llmUsed', 'q51', 'q52', 'cotPrompt', 'risks', 'ethics', 'steps', 'applied', 'bestPrompt', 'fc1q', 'fc1n', 'fc1f', 'fc1t', 'fc1v', 'fc2q', 'fc2n', 'fc2f', 'fc2t', 'fc2v', 'outHall', 'outTitles', 'outSent'].forEach(k => add(k, f[k]));
+    add('Verdict', S.verdict); add('Verdict text', f.verdictText); ['ex1', 'ex2', 'ex3', 'ex4'].forEach(k => add(k, f[k]));
+    add('TA checks', ['ta2', 'ta4', 'ta6'].map(k => f[k] || '—').join(' / '));
+    return lines.join('\n');
+  }
+  $('copyAll').addEventListener('click', () => copyText(allText(), 'คัดลอกคำตอบทั้งหมดแล้ว'));
+  $('printBtn').addEventListener('click', () => { try { const before = Date.now(); window.print(); if (Date.now() - before < 150) $('printNote').hidden = false; } catch (e) { $('printNote').hidden = false; } });
+
+  // ---- completeness (Thai answers have no spaces: count characters, ~10 words ≈ 40 chars)
+  function checks() {
+    const f = S.fields; const g = groupAccuracy(); const ans = k => chars(f[k]) >= 40; const short = k => chars(f[k]) >= 15;
+    return [
+      ['Setup: หมายเลขกลุ่มและชื่อสมาชิก · group number and members', !!(Number(f.groupNo) > 0 && members().length >= 1)],
+      ['1.A ทุกคนติดป้ายครบ 12 ใบ · every member labelled all 12 cards', members().length > 0 && members().every((m, i) => accuracy(S.guesses[String(i)]).n === 12)],
+      ['1.B กฎอย่างน้อย 3 ข้อ · at least 3 rules', S.rules.filter(r => r.trim()).length >= 3],
+      ['1.C ตรวจคะแนนครบ 12 ใบ · scored with all 12 cards', S.revealed && g.n === 12],
+      ['1.D keywords ช่องละ ≥ 2 คำ · ≥ 2 keywords per channel', splitKw(f.kwF).length >= 2 && splitKw(f.kw9).length >= 2],
+      ['2.6 train, test, random accuracy และ top feature', !!(f.trainAcc && f.testAcc && f.randAcc && (f.topFeat || '').trim())],
+      ['Q2.1 – Q2.4 ตอบแล้ว · answered', ['q21', 'q22', 'q23', 'q24'].every(ans)],
+      ['3.A คำตอบกลุ่มครบ 6 ข้อ · all six group answers', PREFIXES.every(([k]) => (S.lm[k] && S.lm[k].group || '').trim())],
+      ['Q3.1 ตอบแล้ว · answered', ans('q31')],
+      ['4.7 ตัวเลขจาก Colab · numbers from Colab', !!(f.lmScore && f.vocab && f.lmAcc)],
+      ['Q4.1 – Q4.5 ตอบแล้ว · answered', ['q41', 'q42', 'q43', 'q44', 'q45'].every(ans)],
+      ['Q5.1 – Q5.2 ตอบแล้ว · answered', ['q51', 'q52'].every(ans)],
+      ['6.1 risks, ethics, steps, applied', ['risks', 'ethics', 'steps', 'applied'].every(short)],
+      ['6.2 คำตัดสิน + เหตุผล · verdict chosen and written', !!S.verdict && chars(f.verdictText) >= 60],
+      ['6.3 stage ละ 1 ประโยค · one sentence per stage', ['ex1', 'ex2', 'ex3', 'ex4'].every(short)],
+      ['6.4 TA เซ็นครบ 3 ช่อง · TA initials for all three', ['ta2', 'ta4', 'ta6'].every(k => (f[k] || '').trim())],
+    ];
+  }
+  const STAGE_CHECKS = { setup: [0], 'stage-1': [1, 2, 3, 4], 'stage-2': [5, 6], 'lm-intro': [], 'stage-3': [7, 8], 'stage-4': [9, 10], 'stage-5': [11], 'stage-6': [12, 13, 14, 15], print: [] };
+  function renderChecklist() {
+    const c = checks(); const box = $('checklist');
+    box.innerHTML = '<div class="tablewrap"><table><tbody>' + c.map(([label, ok]) => '<tr><td style="width:2em">' + (ok ? '<span style="color:var(--ok)">✓</span>' : '<span style="color:var(--warn)">○</span>') + '</td><td>' + label + '</td></tr>').join('') + '</tbody></table></div>';
+    const n = c.filter(x => x[1]).length; box.insertAdjacentHTML('beforeend', '<div class="note ' + (n === c.length ? 'ok' : '') + '">ครบ ' + n + ' จาก ' + c.length + ' ข้อ · ' + n + ' of ' + c.length + ' complete</div>');
+  }
+  function refreshMeta() {
+    const c = checks();
+    document.querySelectorAll('#rail a').forEach(a => { const idx = STAGE_CHECKS[a.dataset.view] || []; a.classList.toggle('done', idx.length > 0 && idx.every(i => c[i][1])); });
+    $('chipGroup').textContent = 'กลุ่ม ' + (S.fields.groupNo || '—');
+    $('phLine').textContent = 'กลุ่ม ' + (S.fields.groupNo || '—') + ' · สมาชิก: ' + (members().join(', ') || '—') + ' · พิมพ์เมื่อ ' + new Date().toLocaleDateString('th-TH');
+    if (current() === 'print') renderChecklist();
+  }
+
+  // ---- routing
+  const VIEWS = ['setup', 'stage-1', 'stage-2', 'lm-intro', 'stage-3', 'stage-4', 'stage-5', 'stage-6', 'print'];
+  function current() { const h = (location.hash || '').replace('#', ''); return VIEWS.includes(h) ? h : 'setup'; }
+  function route() {
+    const v = current();
+    document.querySelectorAll('section.view').forEach(s => s.classList.toggle('active', s.id === 'view-' + v));
+    document.querySelectorAll('#rail a').forEach(a => a.classList.toggle('active', a.dataset.view === v));
+    refreshMeta(); window.scrollTo({ top: 0 });
+  }
+  window.addEventListener('hashchange', route);
+  window.addEventListener('beforeprint', () => { if (!S.revealed) { S.revealed = true; renderCardsA(); renderCardsC(); } });
+
+  // ---- reset
+  $('resetBtn').addEventListener('click', () => { $('resetDialog').hidden = false; });
+  $('resetNo').addEventListener('click', () => { $('resetDialog').hidden = true; });
+  $('resetYes').addEventListener('click', () => { try { localStorage.removeItem(STORE); } catch (e) {} location.hash = '#setup'; location.reload(); });
+
+  // ---- boot
+  renderTrain(); renderMembers(); renderRules(); renderCardsC(); renderLM();
+  onFieldChange('verdictText');
+  $('codeS1').textContent = '# กดปุ่มเพื่อสร้างบล็อก'; $('codeS3').textContent = '# กดปุ่มเพื่อสร้างบล็อก';
+  route();
+  if (S.fields.groupNo) $('saveStatus').textContent = 'กู้คืนจากเบราว์เซอร์นี้';
+})();
+</script>
+
+</body>
+</html>
